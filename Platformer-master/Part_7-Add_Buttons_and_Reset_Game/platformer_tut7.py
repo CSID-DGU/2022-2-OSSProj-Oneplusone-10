@@ -20,7 +20,7 @@ game_over = 0
 #load images
 sun_img = pygame.image.load('img/sun.png')
 bg_img = pygame.image.load('img/sky.png')
-restart_img = pygame.image.load('img/restart_btn.png')
+restart_img = pygame.image.load('img/restart_btn.png') #리스타트 버튼 지정
 
 
 
@@ -34,7 +34,7 @@ class Button():
 
 	def draw(self):
 		action = False
-
+#마우스 눌러졌을 때 기준으로 나누는듯
 		#get mouse position
 		pos = pygame.mouse.get_pos()
 
@@ -42,16 +42,16 @@ class Button():
 		if self.rect.collidepoint(pos):
 			if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
 				action = True
-				self.clicked = True
+				self.clicked = True#클릭 했을때 추적
 
 		if pygame.mouse.get_pressed()[0] == 0:
-			self.clicked = False
+			self.clicked = False#클릭 안했을때 추적
 
 
 		#draw button
 		screen.blit(self.image, self.rect)
 
-		return action
+		return action#False or True 두가지
 
 
 class Player():
@@ -68,7 +68,7 @@ class Player():
 		if game_over == 0:
 			#get keypresses
 			key = pygame.key.get_pressed()
-			if key[pygame.K_SPACE] and self.jumped == False and self.in_air == False:
+			if key[pygame.K_SPACE] and self.jumped == False and self.in_air == False:#무한 점프 방지
 				self.vel_y = -15
 				self.jumped = True
 			if key[pygame.K_SPACE] == False:
@@ -109,7 +109,7 @@ class Player():
 			dy += self.vel_y
 
 			#check for collision
-			self.in_air = True
+			self.in_air = True#무한점프 방지용
 			for tile in world.tile_list:
 				#check for collision in x direction
 				if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
@@ -152,7 +152,7 @@ class Player():
 		return game_over
 
 
-	def reset(self, x, y):
+	def reset(self, x, y):#리셋 메소드 정의
 		self.images_right = []
 		self.images_left = []
 		self.index = 0
@@ -173,7 +173,7 @@ class Player():
 		self.vel_y = 0
 		self.jumped = False
 		self.direction = 0
-		self.in_air = True
+		self.in_air = True#무한점프 방지
 
 
 

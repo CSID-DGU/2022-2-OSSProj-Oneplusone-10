@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-import pickle
+import pickle#피클 import
 from os import path
 
 pygame.init()
@@ -17,9 +17,9 @@ pygame.display.set_caption('Platformer')
 #define game variables
 tile_size = 50
 game_over = 0
-main_menu = True
-level = 0
-max_levels = 7
+main_menu = True#메인메뉴 지정
+level = 0#레벨 변수 지정(8부터 오류)
+max_levels = 7#max level은 7에서 끝
 
 
 #load images
@@ -151,15 +151,15 @@ class Player():
 
 			#check for collision with enemies
 			if pygame.sprite.spritecollide(self, blob_group, False):
-				game_over = -1
+				game_over = -1#플레이어 사망
 
 			#check for collision with lava
 			if pygame.sprite.spritecollide(self, lava_group, False):
-				game_over = -1
+				game_over = -1#플레이어 사망
 
 			#check for collision with exit
 			if pygame.sprite.spritecollide(self, exit_group, False):
-				game_over = 1
+				game_over = 1#positive 1:플레이어 생존
 
 
 			#update player coordinates
@@ -213,31 +213,31 @@ class World():
 		grass_img = pygame.image.load('img/grass.png')
 
 		row_count = 0
-		for row in data:
-			col_count = 0
+		for row in data:#레벨 에디터 파일에서 맵 수정시
+			col_count = 0#클릭 횟수 세기
 			for tile in row:
-				if tile == 1:
-					img = pygame.transform.scale(dirt_img, (tile_size, tile_size))
+				if tile == 1:#클릭 한번일때
+					img = pygame.transform.scale(dirt_img, (tile_size, tile_size))#dirt 타일 생성
 					img_rect = img.get_rect()
 					img_rect.x = col_count * tile_size
 					img_rect.y = row_count * tile_size
 					tile = (img, img_rect)
 					self.tile_list.append(tile)
-				if tile == 2:
-					img = pygame.transform.scale(grass_img, (tile_size, tile_size))
+				if tile == 2:#클릭 두번일때
+					img = pygame.transform.scale(grass_img, (tile_size, tile_size))#grass 타일 생성
 					img_rect = img.get_rect()
 					img_rect.x = col_count * tile_size
 					img_rect.y = row_count * tile_size
 					tile = (img, img_rect)
 					self.tile_list.append(tile)
-				if tile == 3:
-					blob = Enemy(col_count * tile_size, row_count * tile_size + 15)
+				if tile == 3:#클릭 세번일 떄
+					blob = Enemy(col_count * tile_size, row_count * tile_size + 15)#enemy 생성
 					blob_group.add(blob)
-				if tile == 6:
-					lava = Lava(col_count * tile_size, row_count * tile_size + (tile_size // 2))
+				if tile == 6:#클릭 6번일때
+					lava = Lava(col_count * tile_size, row_count * tile_size + (tile_size // 2))#lava 생성
 					lava_group.add(lava)
-				if tile == 8:
-					exit = Exit(col_count * tile_size, row_count * tile_size - (tile_size // 2))
+				if tile == 8:#클릭 8번일때
+					exit = Exit(col_count * tile_size, row_count * tile_size - (tile_size // 2))# Exit생성,  tile_size - (tile_size // 2):exit 반칸 올려서 위치시킴
 					exit_group.add(exit)
 				col_count += 1
 			row_count += 1
@@ -253,7 +253,7 @@ class World():
 class Enemy(pygame.sprite.Sprite):
 	def __init__(self, x, y):
 		pygame.sprite.Sprite.__init__(self)
-		self.image = pygame.image.load('img/blob.png')
+		self.image = pygame.image.load('img/blob.png') #이미지 지정
 		self.rect = self.image.get_rect()
 		self.rect.x = x
 		self.rect.y = y
@@ -272,7 +272,7 @@ class Lava(pygame.sprite.Sprite):
 	def __init__(self, x, y):
 		pygame.sprite.Sprite.__init__(self)
 		img = pygame.image.load('img/lava.png')
-		self.image = pygame.transform.scale(img, (tile_size, tile_size // 2))
+		self.image = pygame.transform.scale(img, (tile_size, tile_size // 2))#타일 사이즈 지정
 		self.rect = self.image.get_rect()
 		self.rect.x = x
 		self.rect.y = y
@@ -282,7 +282,7 @@ class Exit(pygame.sprite.Sprite):
 	def __init__(self, x, y):
 		pygame.sprite.Sprite.__init__(self)
 		img = pygame.image.load('img/exit.png')
-		self.image = pygame.transform.scale(img, (tile_size, int(tile_size * 1.5)))
+		self.image = pygame.transform.scale(img, (tile_size, int(tile_size * 1.5)))#라바 타일 사이즈 지정
 		self.rect = self.image.get_rect()
 		self.rect.x = x
 		self.rect.y = y
@@ -297,7 +297,7 @@ exit_group = pygame.sprite.Group()
 
 
 #load in level data and create world
-if path.exists(f'level{level}_data'):
+if path.exists(f'level{level}_data'):#맵 지정, 레벨 변수에 따라 다른 맵 호출
 	pickle_in = open(f'level{level}_data', 'rb')
 	world_data = pickle.load(pickle_in)
 world = World(world_data)
@@ -305,8 +305,8 @@ world = World(world_data)
 
 #create buttons
 restart_button = Button(screen_width // 2 - 50, screen_height // 2 + 100, restart_img)
-start_button = Button(screen_width // 2 - 350, screen_height // 2, start_img)
-exit_button = Button(screen_width // 2 + 150, screen_height // 2, exit_img)
+start_button = Button(screen_width // 2 - 350, screen_height // 2, start_img)#start button 위치 지정
+exit_button = Button(screen_width // 2 + 150, screen_height // 2, exit_img)#exit button 위치 지정
 
 
 run = True
@@ -317,12 +317,12 @@ while run:
 	screen.blit(bg_img, (0, 0))
 	screen.blit(sun_img, (100, 100))
 
-	if main_menu == True:
+	if main_menu == True:#메인 메뉴 화면
 		if exit_button.draw():
 			run = False
 		if start_button.draw():
 			main_menu = False
-	else:
+	else:# 게임 진행 중
 		world.draw()
 
 		if game_over == 0:
@@ -335,21 +335,21 @@ while run:
 		game_over = player.update(game_over)
 
 		#if player has died
-		if game_over == -1:
+		if game_over == -1:#플레이어 사망시
 			if restart_button.draw():
 				world_data = []
 				world = reset_level(level)
 				game_over = 0
 
 		#if player has completed the level
-		if game_over == 1:
+		if game_over == 1:#플레이어 생존시 1
 			#reset game and go to next level
-			level += 1
+			level += 1#레벨 1 증가
 			if level <= max_levels:
 				#reset level
 				world_data = []
 				world = reset_level(level)
-				game_over = 0
+				game_over = 0#다시 카운트 0으로 만들어줌
 			else:
 				if restart_button.draw():
 					level = 1
