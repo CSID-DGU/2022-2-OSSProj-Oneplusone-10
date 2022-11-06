@@ -15,7 +15,7 @@ pygame.display.set_caption('Platformer')
 #define game variables
 tile_size = 50
 game_over = 0
-main_menu = True
+main_menu = True#메인메뉴 지정
 
 
 #load images
@@ -299,12 +299,12 @@ while run:
 	screen.blit(bg_img, (0, 0))
 	screen.blit(sun_img, (100, 100))
 
-	if main_menu == True:
+	if main_menu == True:#메인 메뉴 화면
 		if exit_button.draw():
 			run = False
 		if start_button.draw():
 			main_menu = False
-	else:
+	else: # 게임 진행 중
 		world.draw()
 
 		if game_over == 0:
