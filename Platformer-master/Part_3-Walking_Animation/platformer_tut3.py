@@ -1,10 +1,12 @@
+#애니메이션(시간, player 걷는 모습 img_right img_left 리스트 이용해서 걷는모습처럼 보이게, cooltime, 방향 direction)
+
 import pygame
 from pygame.locals import *
 
 pygame.init()
 
-clock = pygame.time.Clock()
-fps = 60
+clock = pygame.time.Clock() #
+fps = 60 #fps(frame per second) : 1초에 화면이 얼마나 다시 그려지느냐의 단위
 
 screen_width = 1000
 screen_height = 1000
@@ -23,28 +25,28 @@ bg_img = pygame.image.load('img/sky.png')
 
 class Player():
 	def __init__(self, x, y):
-		self.images_right = []
-		self.images_left = []
-		self.index = 0
-		self.counter = 0
+		self.images_right = [] #오른발버전
+		self.images_left = [] #왼발버전
+		self.index = 0 #아이템 인덱스
+		self.counter = 0 #스피드 조절
 		for num in range(1, 5):
-			img_right = pygame.image.load(f'img/guy{num}.png')
-			img_right = pygame.transform.scale(img_right, (40, 80))
-			img_left = pygame.transform.flip(img_right, True, False)
-			self.images_right.append(img_right)
+			img_right = pygame.image.load(f'img/guy{num}.png') #1,2,3,4 
+			img_right = pygame.transform.scale(img_right, (40, 80)) #이미지 scaling
+			img_left = pygame.transform.flip(img_right, True, False) #왼발 이미지 scale- flip해서/flip 할 떄 좌우만 할거니까 true 작성.(상하 flip은 안할거니까 false)
+			self.images_right.append(img_right) #4개의 이미지를 돌리기 위해 리스트에 추가
 			self.images_left.append(img_left)
-		self.image = self.images_right[self.index]
+		self.image = self.images_right[self.index] #아이템 인덱스가 0부터 시작하니까 서있는 모션 이미지부터 시작
 		self.rect = self.image.get_rect()
 		self.rect.x = x
 		self.rect.y = y
 		self.vel_y = 0
 		self.jumped = False
-		self.direction = 0
+		self.direction = 0 #방향은 0으로 리셋(중립) 1이면 오른쪽을 바라보는 그림 나오게, 0이면 왼쪽 바라보는 그림 나오게 할 것임)
 
 	def update(self):
 		dx = 0
 		dy = 0
-		walk_cooldown = 5
+		walk_cooldown = 5 #인덱스를 업데이트하려면 5번의 반복이 필요합니다.(키를 누를 떄 좀 더 빠른 반응속도를 원한다면 숫자를 줄이면 된다)
 
 		#get keypresses
 		key = pygame.key.get_pressed()
@@ -55,29 +57,29 @@ class Player():
 			self.jumped = False
 		if key[pygame.K_LEFT]:
 			dx -= 5
-			self.counter += 1
-			self.direction = -1
+			self.counter += 1 #내가 키를 누를 떄만 counter가 늘어나도록
+			self.direction = -1 # right누르면 방향은 1로
 		if key[pygame.K_RIGHT]:
 			dx += 5
-			self.counter += 1
-			self.direction = 1
-		if key[pygame.K_LEFT] == False and key[pygame.K_RIGHT] == False:
-			self.counter = 0
-			self.index = 0
+			self.counter += 1 #내가 키를 누를 떄만 counter가 늘어나도록
+			self.direction = 1 # right누르면 방향은 1로
+		if key[pygame.K_LEFT] == False and key[pygame.K_RIGHT] == False: #key 누르고 나서(안누를 때)는 counter 리셋
+			self.counter = 0 #counter도 처음부터 시작
+			self.index = 0 #그러면 이미지 처음부터 시작
 			if self.direction == 1:
-				self.image = self.images_right[self.index]
+				self.image = self.images_right[self.index] 
 			if self.direction == -1:
 				self.image = self.images_left[self.index]
 
 
-		#handle animation
+		#handle animation : 반복 때 index늘려주고, 다음 그림으로 바꿔줘
 		if self.counter > walk_cooldown:
-			self.counter = 0	
+			self.counter = 0	#wallk cooldown 넘으면 리셋
 			self.index += 1
-			if self.index >= len(self.images_right):
+			if self.index >= len(self.images_right): #4번째 그림까지 돌았으면 처음그림으로 돌아와
 				self.index = 0
 			if self.direction == 1:
-				self.image = self.images_right[self.index]
+				self.image = self.images_right[self.index] #다음 그림으로 바꿔줘
 			if self.direction == -1:
 				self.image = self.images_left[self.index]
 
@@ -170,7 +172,7 @@ world = World(world_data)
 run = True
 while run:
 
-	clock.tick(fps)
+	clock.tick(fps) #clock화면에 추가
 
 	screen.blit(bg_img, (0, 0))
 	screen.blit(sun_img, (100, 100))

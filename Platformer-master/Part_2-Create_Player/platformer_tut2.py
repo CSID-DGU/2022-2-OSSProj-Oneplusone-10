@@ -1,3 +1,5 @@
+#player 추가, grid 관련 코드 없애기(draw_gird())
+
 import pygame
 from pygame.locals import *
 
@@ -18,24 +20,24 @@ sun_img = pygame.image.load('img/sun.png')
 bg_img = pygame.image.load('img/sky.png')
 
 
-class Player():
+class Player(): #player 만들기
 	def __init__(self, x, y):
-		img = pygame.image.load('img/guy1.png')
-		self.image = pygame.transform.scale(img, (40, 80))
-		self.rect = self.image.get_rect()
+		img = pygame.image.load('img/guy1.png') #guy1 이미지 업로드
+		self.image = pygame.transform.scale(img, (40, 80)) #게임 창 크기에 맞게 사진 크기 변경
+		self.rect = self.image.get_rect() #사진 rectangle로 만들어(그리드에 맞게)
 		self.rect.x = x
 		self.rect.y = y
 		self.vel_y = 0
-		self.jumped = False
+		self.jumped = False #점프 누르고 무한으로 솟아오르는 것 방지하는 기능
 
-	def update(self):
-		dx = 0
+	def update(self): #player background 위로 올리기
+		dx = 0 #위치 기준(keypress를 위해 delta)
 		dy = 0
 
-		#get keypresses
-		key = pygame.key.get_pressed()
-		if key[pygame.K_SPACE] and self.jumped == False:
-			self.vel_y = -15
+		#get keypresses_player의 key별 기능(pygame기능 사용)
+		key = pygame.key.get_pressed() 
+		if key[pygame.K_SPACE] and self.jumped == False: #space key 누르고 jump가 false인 경우
+			self.vel_y = -15 #velocity : 속도
 			self.jumped = True
 		if key[pygame.K_SPACE] == False:
 			self.jumped = False
@@ -45,24 +47,24 @@ class Player():
 			dx += 5
 
 
-		#add gravity
-		self.vel_y += 1
+		#add gravity(점프시 무한으로 솟아오르는 것을 방지하는 기능))
+		self.vel_y += 1 #점프 속도 올리기(10이전 까지만))
 		if self.vel_y > 10:
 			self.vel_y = 10
 		dy += self.vel_y
 
-		#check for collision
+		#check for collision(충돌 주의))
 
 		#update player coordinates
 		self.rect.x += dx
 		self.rect.y += dy
 
-		if self.rect.bottom > screen_height:
-			self.rect.bottom = screen_height
-			dy = 0
+		if self.rect.bottom > screen_height: #높이보다 더 올라갈 경우
+			self.rect.bottom = screen_height #높이만큼 올라갈 떄
+			dy = 0 #다시 내려갈 수 있도록
 
 		#draw player onto screen
-		screen.blit(self.image, self.rect)
+		screen.blit(self.image, self.rect) #player background 위로 올리기
 
 
 
@@ -127,7 +129,7 @@ world_data = [
 
 
 
-player = Player(100, screen_height - 130)
+player = Player(100, screen_height - 130) #player 위치 : x좌표 100, y는 맨 밑에서 시작(tile이 50픽셀, playerdl 80픽셀이므로)
 world = World(world_data)
 
 run = True
@@ -147,3 +149,7 @@ while run:
 	pygame.display.update()
 
 pygame.quit()
+
+
+
+#점프 하려면 속도와 위치, false로 만들어야해
