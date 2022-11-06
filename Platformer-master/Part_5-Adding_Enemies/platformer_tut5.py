@@ -90,7 +90,7 @@ class Player():
 			self.vel_y = 10
 		dy += self.vel_y
 
-		#check for collision
+		#check for collision 
 		for tile in world.tile_list:
 			#check for collision in x direction
 			if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
@@ -150,8 +150,9 @@ class World():
 					img_rect.y = row_count * tile_size
 					tile = (img, img_rect)
 					self.tile_list.append(tile)
-				if tile == 3:
+				if tile == 3: #적
 					blob = Enemy(col_count * tile_size, row_count * tile_size + 15)
+     				# +15를 통해 적이 붕 뜨고 있지 않고 블록 바로 위에 위치하게 됨
 					blob_group.add(blob)
 				col_count += 1
 			row_count += 1
@@ -163,22 +164,23 @@ class World():
 
 
 
-class Enemy(pygame.sprite.Sprite):
+class Enemy(pygame.sprite.Sprite): #적 #파이게임 내장 함수
 	def __init__(self, x, y):
 		pygame.sprite.Sprite.__init__(self)
-		self.image = pygame.image.load('img/blob.png')
-		self.rect = self.image.get_rect()
+  		#슈퍼 클래스에서 생성자를 호출하여 파이게임이 이미 스프라이트 클래스를 얻음
+		self.image = pygame.image.load('img/blob.png') #적 이미지 로드
+		self.rect = self.image.get_rect() #내 사각형에 제공해야 함
 		self.rect.x = x
-		self.rect.y = y
-		self.move_direction = 1
-		self.move_counter = 0
+		self.rect.y = y #내가 제공하는 x 및 y 좌표에 배치하겠다는 의미
+		self.move_direction = 1 #적을 움직이게 하기 위해 1로 초기화
+		self.move_counter = 0 # 밑줄 카운터
 
 	def update(self):
 		self.rect.x += self.move_direction
-		self.move_counter += 1
+		self.move_counter += 1 #오른쪽으로 이동
 		if abs(self.move_counter) > 50:
-			self.move_direction *= -1
-			self.move_counter *= -1
+			self.move_direction *= -1 #반대 방향으로 이동 양수<->음수
+			self.move_counter *= -1 #어느 정도까지 움직일지 조절
 
 
 
@@ -212,7 +214,7 @@ world_data = [
 
 player = Player(100, screen_height - 130)
 
-blob_group = pygame.sprite.Group()
+blob_group = pygame.sprite.Group() #새 빈 그룹 생성하고 적을 추가할 수 있게 됨
 
 world = World(world_data)
 
@@ -226,8 +228,8 @@ while run:
 
 	world.draw()
 
-	blob_group.update()
-	blob_group.draw(screen)
+	blob_group.update() #적 위치 업데이트 한 개체가 아니라 전체가 할 수 있게 함
+	blob_group.draw(screen) #적을 화면에 제공하게 하는 함
 
 	player.update()
 
