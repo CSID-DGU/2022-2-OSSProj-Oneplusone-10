@@ -17,16 +17,16 @@ pygame.display.set_caption('Platformer')
 
 #define font
 font = pygame.font.SysFont('Bauhaus 93', 70)
-font_score = pygame.font.SysFont('Bauhaus 93', 30)
+font_score = pygame.font.SysFont('Bauhaus 93', 30) # 점수에 대한 글꼴과 크기 설정
 
 
-#define game variables
+#define game variables 
 tile_size = 50
 game_over = 0
 main_menu = True
 level = 0
 max_levels = 7
-score = 0
+score = 0   #코인 스코어 초기값 0으로 설정
 
 
 #define colours
@@ -42,8 +42,9 @@ start_img = pygame.image.load('img/start_btn.png')
 exit_img = pygame.image.load('img/exit_btn.png')
 
 
+# 텍스트를 가져와 이미지로 변환 -> 파이게임 내장함수 render 사용
 def draw_text(text, font, text_col, x, y):
-	img = font.render(text, True, text_col)
+	img = font.render(text, True, text_col) 
 	screen.blit(img, (x, y))
 
 
@@ -299,11 +300,11 @@ class Lava(pygame.sprite.Sprite):
 		self.rect.y = y
 
 
-class Coin(pygame.sprite.Sprite):
+class Coin(pygame.sprite.Sprite):  # 용암과 출구 사이에 Coin 클래스 구현
 	def __init__(self, x, y):
 		pygame.sprite.Sprite.__init__(self)
 		img = pygame.image.load('img/coin.png')
-		self.image = pygame.transform.scale(img, (tile_size // 2, tile_size // 2))
+		self.image = pygame.transform.scale(img, (tile_size // 2, tile_size // 2)) # 타일크기의 절반으로 생성
 		self.rect = self.image.get_rect()
 		self.rect.center = (x, y)
 
@@ -328,7 +329,7 @@ exit_group = pygame.sprite.Group()
 
 #create dummy coin for showing the score
 score_coin = Coin(tile_size // 2, tile_size // 2)
-coin_group.add(score_coin)
+coin_group.add(score_coin)  # coin_group에 score_coin 추가
 
 #load in level data and create world
 if path.exists(f'level{level}_data'):
@@ -359,13 +360,15 @@ while run:
 	else:
 		world.draw()
 
-		if game_over == 0:
+		if game_over == 0: 
 			blob_group.update()
 			#update score
 			#check if a coin has been collected
+			# True -> 코인이 수집되고 삭제 / False -> 삭제되고 싶지 않을 때
 			if pygame.sprite.spritecollide(player, coin_group, True):
-				score += 1
-			draw_text('X ' + str(score), font_score, white, tile_size - 10, 10)
+				score += 1   # 코인 하나 먹을때 마다 1씩 증가
+			# 왼쪽 상단에 코인 누적 계산 표시 -> 점수를 문자열로 변환
+			draw_text('X ' + str(score), font_score, white, tile_size - 10, 10) 
 		
 		blob_group.draw(screen)
 		lava_group.draw(screen)
@@ -375,7 +378,7 @@ while run:
 		game_over = player.update(game_over)
 
 		#if player has died
-		if game_over == -1:
+		if game_over == -1:  # 게임이 음수이면 -> 플레이어가 길을 잃었다로 해석
 			if restart_button.draw():
 				world_data = []
 				world = reset_level(level)
@@ -383,16 +386,16 @@ while run:
 				score = 0
 
 		#if player has completed the level
-		if game_over == 1:
+		if game_over == 1:  # 게임을 완수한 경우
 			#reset game and go to next level
-			level += 1
-			if level <= max_levels:
+			level += 1   # 다음단계로 넘어감
+			if level <= max_levels:  # 레벨이 최대 레벨보다 낮으면 계속 플레이 가능
 				#reset level
 				world_data = []
 				world = reset_level(level)
 				game_over = 0
-			else:
-				draw_text('YOU WIN!', font, blue, (screen_width // 2) - 140, screen_height // 2)
+			else:  # 마지막 관문을 통과 한다면
+				draw_text('YOU WIN!', font, blue, (screen_width // 2) - 140, screen_height // 2)  # 화면 중앙에 YOU WIN! 출력
 				if restart_button.draw():
 					level = 1
 					#reset level

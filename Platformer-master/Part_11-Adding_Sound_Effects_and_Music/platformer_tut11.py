@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-from pygame import mixer
+from pygame import mixer  # 파이썬에 내장된 모듈 mixer를 사용하면 사운드를 추가 제어가 가능
 import pickle
 from os import path
 
@@ -47,11 +47,11 @@ exit_img = pygame.image.load('img/exit_btn.png')
 #load sounds
 pygame.mixer.music.load('img/music.wav')
 pygame.mixer.music.play(-1, 0.0, 5000)
-coin_fx = pygame.mixer.Sound('img/coin.wav')
-coin_fx.set_volume(0.5)
-jump_fx = pygame.mixer.Sound('img/jump.wav')
+coin_fx = pygame.mixer.Sound('img/coin.wav') # 코인 먹을때 나는 소리
+coin_fx.set_volume(0.5)  # 볼륨을 약가 낮춤
+jump_fx = pygame.mixer.Sound('img/jump.wav') # 캐릭터가 점프할 때 나는 소리
 jump_fx.set_volume(0.5)
-game_over_fx = pygame.mixer.Sound('img/game_over.wav')
+game_over_fx = pygame.mixer.Sound('img/game_over.wav') # 게임 오버 될때 나는 소리
 game_over_fx.set_volume(0.5)
 
 
@@ -121,7 +121,7 @@ class Player():
 			#get keypresses
 			key = pygame.key.get_pressed()
 			if key[pygame.K_SPACE] and self.jumped == False and self.in_air == False:
-				jump_fx.play()
+				jump_fx.play()  # 음향효과를 재생하자 !
 				self.vel_y = -15
 				self.jumped = True
 			if key[pygame.K_SPACE] == False:
