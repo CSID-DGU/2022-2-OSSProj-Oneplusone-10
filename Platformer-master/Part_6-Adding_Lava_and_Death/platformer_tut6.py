@@ -14,7 +14,7 @@ pygame.display.set_caption('Platformer')
 
 #define game variables
 tile_size = 50
-game_over = 0
+game_over = 0 #0은 게임이 끝나지 않은 것을 의미
 
 
 #load images
@@ -34,7 +34,7 @@ class Player():
 			img_left = pygame.transform.flip(img_right, True, False)
 			self.images_right.append(img_right)
 			self.images_left.append(img_left)
-		self.dead_image = pygame.image.load('img/ghost.png')
+		self.dead_image = pygame.image.load('img/ghost.png') #죽었을 때 유령
 		self.image = self.images_right[self.index]
 		self.rect = self.image.get_rect()
 		self.rect.x = x
@@ -110,11 +110,11 @@ class Player():
 						self.vel_y = 0
 
 
-			#check for collision with enemies
-			if pygame.sprite.spritecollide(self, blob_group, False):
+			#check for collision with enemies 적과의 충돌 확인
+			if pygame.sprite.spritecollide(self, blob_group, False): #파이게임 내장 함수 
 				game_over = -1
 
-			#check for collision with lava
+			#check for collision with lava #용암과 충돌 확인
 			if pygame.sprite.spritecollide(self, lava_group, False):
 				game_over = -1
 
@@ -122,17 +122,17 @@ class Player():
 			self.rect.x += dx
 			self.rect.y += dy
 
-
-		elif game_over == -1:
-			self.image = self.dead_image
-			if self.rect.y > 200:
-				self.rect.y -= 5
+		#게임 오버가 되었을 때
+		elif game_over == -1: 
+			self.image = self.dead_image #캐릭터 고스트로 변함
+			if self.rect.y > 200: #위로 흐르는거 제한
+				self.rect.y -= 5 #위로 흘러
 
 		#draw player onto screen
 		screen.blit(self.image, self.rect)
 		pygame.draw.rect(screen, (255, 255, 255), self.rect, 2)
 
-		return game_over
+		return game_over #결국 game_over 값을 리턴해서 게임을 끝냄
 
 
 class World():
@@ -147,7 +147,7 @@ class World():
 		for row in data:
 			col_count = 0
 			for tile in row:
-				if tile == 1:
+				if tile == 1: #타일 번호는 내가 놓는 장해물에 해당
 					img = pygame.transform.scale(dirt_img, (tile_size, tile_size))
 					img_rect = img.get_rect()
 					img_rect.x = col_count * tile_size
@@ -164,9 +164,10 @@ class World():
 				if tile == 3:
 					blob = Enemy(col_count * tile_size, row_count * tile_size + 15)
 					blob_group.add(blob)
-				if tile == 6:
+				if tile == 6: #용암
 					lava = Lava(col_count * tile_size, row_count * tile_size + (tile_size // 2))
 					lava_group.add(lava)
+     				#이중 나누기 //2 float 오류 나와서 int로 만들기 위해 
 
 				col_count += 1
 			row_count += 1
@@ -196,11 +197,11 @@ class Enemy(pygame.sprite.Sprite):
 			self.move_counter *= -1
 
 
-class Lava(pygame.sprite.Sprite):
+class Lava(pygame.sprite.Sprite): #용암
 	def __init__(self, x, y):
 		pygame.sprite.Sprite.__init__(self)
-		img = pygame.image.load('img/lava.png')
-		self.image = pygame.transform.scale(img, (tile_size, tile_size // 2))
+		img = pygame.image.load('img/lava.png') #용암 이미지 호출
+		self.image = pygame.transform.scale(img, (tile_size, tile_size // 2)) #블록 높이에 절반
 		self.rect = self.image.get_rect()
 		self.rect.x = x
 		self.rect.y = y
@@ -236,7 +237,7 @@ world_data = [
 player = Player(100, screen_height - 130)
 
 blob_group = pygame.sprite.Group()
-lava_group = pygame.sprite.Group()
+lava_group = pygame.sprite.Group() #새 빈 그룹 생성
 
 world = World(world_data)
 
@@ -250,11 +251,11 @@ while run:
 
 	world.draw()
 
-	if game_over == 0:
-		blob_group.update()
+	if game_over == 0: 
+		blob_group.update() #적 위치 업데이트 한 개체가 아니라 전체가 할 수 있게 함
 	
 	blob_group.draw(screen)
-	lava_group.draw(screen)
+	lava_group.draw(screen) #용암을 화면에 제공하게 하는 일(이게 있어야 보임)
 
 	game_over = player.update(game_over)
 

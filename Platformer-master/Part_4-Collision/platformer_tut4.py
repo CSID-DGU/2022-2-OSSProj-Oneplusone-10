@@ -34,9 +34,9 @@ class Player():
 			self.images_right.append(img_right)
 			self.images_left.append(img_left)
 		self.image = self.images_right[self.index]
-		self.rect = self.image.get_rect()
+		self.rect = self.image.get_rect() #사각형 그리는 것
 		self.rect.x = x
-		self.rect.y = y
+		self.rect.y = y 
 		self.width = self.image.get_width()
 		self.height = self.image.get_height()
 		self.vel_y = 0
@@ -85,23 +85,28 @@ class Player():
 
 
 		#add gravity
-		self.vel_y += 1
+		self.vel_y += 1 #y 속도
 		if self.vel_y > 10:
 			self.vel_y = 10
-		dy += self.vel_y
+		dy += self.vel_y #! 플레이어가 이동하지는 않았지만 이만큼 이동하려고 하므로 대신
+  		#내가 할 수 있는 것은 새로운 dx나 dy를 기반으로 여기에 임시 더미 직사각형을 만드는 것과 거의 같으므로
+		#그가 지금 있는 위치를
 
 		#check for collision
-		for tile in world.tile_list:
+		for tile in world.tile_list: #! 이 세계의 타일들 리스트 내
 			#check for collision in x direction
 			if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
 				dx = 0
-			#check for collision in y direction
+			#check for collision in y direction #! y방향의 충돌을 확인
 			if tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
-				#check if below the ground i.e. jumping
-				if self.vel_y < 0:
-					dy = tile[1].bottom - self.rect.top
+				#! 특정 항목과 사각형 데이터가 인덱스 1에 저장되어 있음
+				#! 0은 이미지
+				#! colliderect는 pygame 충돌 찾는 함수
+    			#check if below the ground i.e. jumping 바닥 아래 있는지 확인 내가 점프-> 머리 맞은 경우
+				if self.vel_y < 0: #블록 밑면에 머리 부딪힘
+					dy = tile[1].bottom - self.rect.top #머리가 부딪힐 때까지 움직임
 					self.vel_y = 0
-				#check if above the ground i.e. falling
+				#check if above the ground i.e. falling #지상에서 떨어지는지 확인
 				elif self.vel_y >= 0:
 					dy = tile[1].top - self.rect.bottom
 					self.vel_y = 0
@@ -120,7 +125,7 @@ class Player():
 		#draw player onto screen
 		screen.blit(self.image, self.rect)
 		pygame.draw.rect(screen, (255, 255, 255), self.rect, 2)
-
+		# 플레이어에게 네모 사각형 처리를 함
 
 
 
@@ -157,7 +162,7 @@ class World():
 		for tile in self.tile_list:
 			screen.blit(tile[0], tile[1])
 			pygame.draw.rect(screen, (255, 255, 255), tile[1], 2)
-
+			#타일 각각에 흰 윤곽선을 넣음
 
 
 world_data = [
