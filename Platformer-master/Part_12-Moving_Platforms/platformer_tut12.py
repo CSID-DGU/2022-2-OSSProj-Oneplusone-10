@@ -314,17 +314,17 @@ class Enemy(pygame.sprite.Sprite):
 class Platform(pygame.sprite.Sprite):
 	def __init__(self, x, y, move_x, move_y):
 		pygame.sprite.Sprite.__init__(self)
-		img = pygame.image.load('img/platform.png')
-		self.image = pygame.transform.scale(img, (tile_size, tile_size // 2))
-		self.rect = self.image.get_rect()
+		img = pygame.image.load('img/platform.png') 
+		self.image = pygame.transform.scale(img, (tile_size, tile_size // 2)) # platform 이미지는 일반 타일 높이의 절반으로 설정
+		self.rect = self.image.get_rect()  # 직사각형 형태로 설정
 		self.rect.x = x
 		self.rect.y = y
 		self.move_counter = 0
-		self.move_direction = 1
+		self.move_direction = 1 
 		self.move_x = move_x
 		self.move_y = move_y
 
-
+	# 의도한 대로 정확하게 위, 아래, 왼쪽, 오른쪽으로 움직임
 	def update(self):
 		self.rect.x += self.move_direction * self.move_x
 		self.rect.y += self.move_direction * self.move_y

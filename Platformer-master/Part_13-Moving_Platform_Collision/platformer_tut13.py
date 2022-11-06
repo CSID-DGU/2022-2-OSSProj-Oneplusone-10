@@ -197,7 +197,7 @@ class Player():
 			if pygame.sprite.spritecollide(self, exit_group, False):
 				game_over = 1
 
-
+			# x방향과 y방향 모두 충돌이 발생하도록 설정
 			#check for collision with platforms
 			for platform in platform_group:
 				#collision in the x direction
@@ -211,10 +211,10 @@ class Player():
 						dy = platform.rect.bottom - self.rect.top
 					#check if above platform
 					elif abs((self.rect.bottom + dy) - platform.rect.top) < col_thresh:
-						self.rect.bottom = platform.rect.top - 1
+						self.rect.bottom = platform.rect.top - 1  # 캐릭터를 한 픽셀 위에 넣기 위해
 						self.in_air = False
 						dy = 0
-					#move sideways with the platform
+					#move sideways with the platform  -> 캐릭터가 플랫폼과 함께 직접 좌우이동
 					if platform.move_x != 0:
 						self.rect.x += platform.move_direction
 
