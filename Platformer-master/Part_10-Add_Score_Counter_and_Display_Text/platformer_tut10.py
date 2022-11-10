@@ -185,10 +185,10 @@ class Player():
 			self.rect.y += dy
 
 
-		elif game_over == -1:
-			self.image = self.dead_image
-			draw_text('GAME OVER!', font, blue, (screen_width // 2) - 200, screen_height // 2)
-			if self.rect.y > 200:
+		elif game_over == -1:  # 캐릭터가 죽으면
+			self.image = self.dead_image  # 캐릭터를 작은 유령으로 바꾼다
+			draw_text('GAME OVER!', font, blue, (screen_width // 2) - 200, screen_height // 2)  # 'GAME OVER!'를 화면 중앙에 출력
+			if self.rect.y > 200:  # 유령 떠오르기 
 				self.rect.y -= 5
 
 		#draw player onto screen

@@ -44,8 +44,6 @@ restart_img = pygame.image.load('img/restart_btn.png')
 start_img = pygame.image.load('img/start_btn.png')
 exit_img = pygame.image.load('img/exit_btn.png')
 
-screen.blit(pygame.transform.scale(sun_img, (1000,1000)), (0, 0))
-pygame.display.flip()
 
 #load sounds
 pygame.mixer.music.load('img/music.wav')
