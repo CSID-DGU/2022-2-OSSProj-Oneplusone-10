@@ -183,12 +183,12 @@ class Player():
 			#check for collision with enemies
 			if pygame.sprite.spritecollide(self, blob_group, False):
 				game_over = -1
-				game_over_fx.play()
+				game_over_fx.play() # 장애물때문에 죽을경우 음향 재생
 
 			#check for collision with lava
 			if pygame.sprite.spritecollide(self, lava_group, False):
 				game_over = -1
-				game_over_fx.play()
+				game_over_fx.play() # 용암때문에 죽을경우 음향 재생
 
 			#check for collision with exit
 			if pygame.sprite.spritecollide(self, exit_group, False):
