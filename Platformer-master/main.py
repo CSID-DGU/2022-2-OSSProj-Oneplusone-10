@@ -25,10 +25,10 @@ font_score = pygame.font.SysFont('Bauhaus 93', 30)
 
 #define game variables
 tile_size = 50
-game_over = 0
-main_menu = True
+game_over = 0  # game over 일때를 0으로 설정
+main_menu = True  
 level = 3
-max_levels = 7
+max_levels = 7 
 score = 0
 
 
@@ -57,8 +57,8 @@ game_over_fx.set_volume(0.5)
 
 
 def draw_text(text, font, text_col, x, y):
-	img = font.render(text, True, text_col)
-	screen.blit(img, (x, y))
+	img = font.render(text, True, text_col)  
+	screen.blit(img, (x, y))  # screen.blit(이미지, 대상) -> 이미지 복사
 
 
 #function to reset level
@@ -224,12 +224,16 @@ class Player():
 			self.rect.x += dx
 			self.rect.y += dy
 
-
-		elif game_over == -1:
+        
+		elif game_over == -1:   
 			self.image = self.dead_image
 			draw_text('GAME OVER!', font, blue, (screen_width // 2) - 200, screen_height // 2)
-			if self.rect.y > 200:
-				self.rect.y -= 5
+			if self.rect.y > 200:   # 죽으면 유령으로 바뀌고 설정한 범위만큼 위로 올라감
+				self.rect.y -= 5   
+            
+
+            
+            
 
 		#draw player onto screen
 		screen.blit(self.image, self.rect)
@@ -424,9 +428,9 @@ while run:
 	screen.blit(sun_img, (100, 100))
 
 	if main_menu == True:
-		if exit_button.draw():
-			run = False
-		if start_button.draw():
+		if exit_button.draw(): # exit 버튼 누르면 while 반복 루프에서 벗어남
+			run = False     
+		if start_button.draw(): # start 버튼 누르면 
 			main_menu = False
 	else:
 		world.draw()
@@ -451,11 +455,10 @@ while run:
 
 		#if player has died
 		if game_over == -1:
-			if restart_button.draw():
 				world_data = []
 				world = reset_level(level)
 				game_over = 0
-				score = 0
+				# score = 0   # 획득한 코인 리셋 안되게 이코드 주석
 
 		#if player has completed the level
 		if game_over == 1:
