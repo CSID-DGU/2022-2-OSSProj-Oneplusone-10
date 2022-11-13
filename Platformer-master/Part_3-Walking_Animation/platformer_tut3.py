@@ -25,23 +25,8 @@ bg_img = pygame.image.load('img/sky.png')
 
 class Player():
 	def __init__(self, x, y):
-		self.images_right = [] #오른발버전
-		self.images_left = [] #왼발버전
-		self.index = 0 #아이템 인덱스
-		self.counter = 0 #스피드 조절
-		for num in range(1, 5):
-			img_right = pygame.image.load(f'img/guy{num}.png') #1,2,3,4 
-			img_right = pygame.transform.scale(img_right, (40, 80)) #이미지 scaling
-			img_left = pygame.transform.flip(img_right, True, False) #왼발 이미지 scale- flip해서/flip 할 떄 좌우만 할거니까 true 작성.(상하 flip은 안할거니까 false)
-			self.images_right.append(img_right) #4개의 이미지를 돌리기 위해 리스트에 추가
-			self.images_left.append(img_left)
-		self.image = self.images_right[self.index] #아이템 인덱스가 0부터 시작하니까 서있는 모션 이미지부터 시작
-		self.rect = self.image.get_rect()
-		self.rect.x = x
-		self.rect.y = y
-		self.vel_y = 0
-		self.jumped = False
-		self.direction = 0 #방향은 0으로 리셋(중립) 1이면 오른쪽을 바라보는 그림 나오게, 0이면 왼쪽 바라보는 그림 나오게 할 것임)
+		self.reset(x, y)
+		
 
 	def update(self):
 		dx = 0
