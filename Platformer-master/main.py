@@ -41,8 +41,10 @@ blue = (0, 0, 255)
 sun_img = pygame.image.load('img/sun.png')
 bg_img = pygame.image.load('img/sky.png')
 restart_img = pygame.image.load('img/restart_btn.png')
-start_img = pygame.image.load('img/start_btn.png')
-exit_img = pygame.image.load('img/exit_btn.png')
+start_img = pygame.image.load('img/start_bt.png')
+option_img = pygame.image.load('img/option_bt.png')
+score_img = pygame.image.load('img/score_bt.png')
+exit_img = pygame.image.load('img/exit_bt.png')
 
 
 #load sounds
@@ -415,8 +417,10 @@ world = World(world_data)
 
 #create buttons
 restart_button = Button(screen_width // 2 - 50, screen_height // 2 + 100, restart_img)
-start_button = Button(screen_width // 2 - 350, screen_height // 2, start_img)
-exit_button = Button(screen_width // 2 + 150, screen_height // 2, exit_img)
+start_button = Button(screen_width // 2 - 160, screen_height // 2-300, start_img)
+option_button = Button(screen_width // 2 - 160, screen_height // 2-150, option_img)
+score_button = Button(screen_width // 2 - 160, screen_height // 2, score_img)
+exit_button = Button(screen_width // 2 - 160, screen_height // 2+150, exit_img)
 
 
 run = True
@@ -432,6 +436,10 @@ while run:
 			run = False     
 		if start_button.draw(): # start 버튼 누르면 
 			main_menu = False
+		if option_button.draw(): # option 버튼 누르면 
+			main_menu = False
+		if score_button.draw(): # score 버튼 누르면 
+			main_menu = False	
 	else:
 		world.draw()
 
