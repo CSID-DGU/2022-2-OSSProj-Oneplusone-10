@@ -2,9 +2,9 @@ import sqlite3
 
 
 class InterfDB:
-
+    
     def __init__(self, dbname):
-        self.__DBNAME = "test.db"
+        self.__DBNAME = dbname
         self.db = sqlite3.connect(self.__DBNAME)
 
     def init_db(self):
@@ -37,3 +37,6 @@ class InterfDB:
                 return True
         else:
             return False
+
+
+db = InterfDB()

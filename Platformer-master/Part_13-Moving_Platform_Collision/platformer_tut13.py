@@ -458,7 +458,7 @@ while run:
 				world_data = []
 				world = reset_level(level)
 				game_over = 0
-				score = 0
+				# score = 0
 
 		#if player has completed the level
 		if game_over == 1:
