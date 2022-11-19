@@ -134,11 +134,11 @@ class Player():
 				self.jumped = False
 			if key[pygame.K_LEFT]:
 				dx -= 5
-				self.counter += 2 #하드모드의 경우 +=2, 이지모드의 경우 +=1
+				self.counter += 1 
 				self.direction = -1
 			if key[pygame.K_RIGHT]:
 				dx += 5
-				self.counter += 2 #하드모드의 경우 +=2, 이지모드의 경우 +=1
+				self.counter += 1 
 				self.direction = 1
 			if key[pygame.K_LEFT] == False and key[pygame.K_RIGHT] == False:
 				self.counter = 0
