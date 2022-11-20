@@ -44,6 +44,7 @@ restart_img = pygame.image.load('img/restart_btn.png')
 start_img = pygame.image.load('img/start_bt.png')
 store_img = pygame.image.load('img/store_bt.png')
 option_img = pygame.image.load('img/option_bt.png')
+score_img = pygame.image.load('img/score_bt.png')
 exit_img = pygame.image.load('img/exit_bt.png')
 
 
@@ -80,7 +81,7 @@ def reset_level(level):
 	#create dummy coin for showing the score
 	score_coin = Coin(tile_size // 2, tile_size // 2)
 	coin_group.add(score_coin)
-	return world
+	return world 
 
 
 class Button():
@@ -95,7 +96,7 @@ class Button():
 		action = False
 
 		#get mouse position
-		pos = pygame.mouse.get_pos()
+		pos = pygame.mouse.get_pos()  # 마우스 위치
 
 		#check mouseover and clicked conditions
 		if self.rect.collidepoint(pos):
@@ -437,9 +438,24 @@ while run:
 		if start_button.draw(): # start 버튼 누르면 
 			main_menu = False
 		if store_button.draw(): # store 버튼 누르면 
-			main_menu = False
+			main_menu = 2
 		if option_button.draw(): # option 버튼 누르면 
-			main_menu = False	
+			main_menu = 3
+   
+	elif main_menu == 2:  # store 버튼 눌렀을때 페이지 
+		screen.blit(bg_img, (0,0))
+		screen.blit(sun_img, (100,100))
+
+		start_button.draw()  # easy mode & hard mode 버튼 추가해서 변경해야함 !
+		store_button.draw()
+  
+	elif main_menu == 3:  # option 버튼 눌렀을때 페이지
+		screen.blit(bg_img, (0,0))
+		screen.blit(sun_img, (100,100))
+  
+		start_button.draw()  # sound on/off & game rule 버튼 추가해서 변경해야함 !
+		store_button.draw()
+   
 	else:
 		world.draw()
 
@@ -487,10 +503,10 @@ while run:
 					game_over = 0
 					score = 0
 
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			run = False
+	for event in pygame.event.get():  # 어떤 이벤트가 발생하였는가?
+		if event.type == pygame.QUIT:  # 창이 닫히는 이벤트가 발생하였는가?
+			run = False  # 닫히는 이벤트가 발생하였으면 게임이 진행중이 아님
 
-	pygame.display.update()
+	pygame.display.update()  # 게임 화면을 다시 그리기 ( 반드시 계속 호출되어야 함 )
 
-pygame.quit()
+pygame.quit()  # pygame 종료
