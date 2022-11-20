@@ -46,6 +46,10 @@ store_img = pygame.image.load('img/store_bt.png')
 option_img = pygame.image.load('img/option_bt.png')
 score_img = pygame.image.load('img/score_bt.png')
 exit_img = pygame.image.load('img/exit_bt.png')
+easy_mode_img = pygame.image.load('img/easy_mode_bt.png')
+hard_mode_img = pygame.image.load('img/hard_mode_bt.png')
+game_rule_img = pygame.image.load('img/game_rule_bt.png')
+sound_on_img = pygame.image.load('img/sound_on_bt.png')
 
 
 #load sounds
@@ -422,7 +426,10 @@ start_button = Button(screen_width // 2 - 160, screen_height // 2-300, start_img
 store_button = Button(screen_width // 2 - 160, screen_height // 2-150, store_img)
 option_button = Button(screen_width // 2 - 160, screen_height // 2, option_img)
 exit_button = Button(screen_width // 2 - 160, screen_height // 2+150, exit_img)
-
+easy_mode_button = Button(screen_width // 2 - 160, screen_height // 2-100, easy_mode_img)
+hard_mode_button = Button(screen_width // 2 - 160, screen_height // 2+100, hard_mode_img)
+game_rule_button = Button(screen_width // 2 - 160, screen_height // 2+100, game_rule_img)
+sound_on_button = Button(screen_width // 2 - 160, screen_height // 2-100, sound_on_img)
 
 run = True
 while run:
@@ -436,25 +443,26 @@ while run:
 		if exit_button.draw(): # exit 버튼 누르면 while 반복 루프에서 벗어남
 			run = False     
 		if start_button.draw(): # start 버튼 누르면 
-			main_menu = False
-		if store_button.draw(): # store 버튼 누르면 
 			main_menu = 2
+		if store_button.draw(): # store 버튼 누르면 
+			main_menu = FALSE
 		if option_button.draw(): # option 버튼 누르면 
 			main_menu = 3
    
+	
 	elif main_menu == 2:  # store 버튼 눌렀을때 페이지 
 		screen.blit(bg_img, (0,0))
 		screen.blit(sun_img, (100,100))
 
-		start_button.draw()  # easy mode & hard mode 버튼 추가해서 변경해야함 !
-		store_button.draw()
+		easy_mode_button.draw()  # easy mode & hard mode 버튼 추가해서 변경해야함 !
+		hard_mode_button.draw()
   
 	elif main_menu == 3:  # option 버튼 눌렀을때 페이지
 		screen.blit(bg_img, (0,0))
 		screen.blit(sun_img, (100,100))
   
-		start_button.draw()  # sound on/off & game rule 버튼 추가해서 변경해야함 !
-		store_button.draw()
+		sound_on_button.draw()  # sound on/off & game rule 버튼 추가해서 변경해야함 !
+		game_rule_button.draw() 
    
 	else:
 		world.draw()
