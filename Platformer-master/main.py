@@ -42,8 +42,8 @@ sun_img = pygame.image.load('img/sun.png')
 bg_img = pygame.image.load('img/sky.png')
 restart_img = pygame.image.load('img/restart_btn.png')
 start_img = pygame.image.load('img/start_bt.png')
+store_img = pygame.image.load('img/store_bt.png')
 option_img = pygame.image.load('img/option_bt.png')
-score_img = pygame.image.load('img/score_bt.png')
 exit_img = pygame.image.load('img/exit_bt.png')
 
 
@@ -134,11 +134,11 @@ class Player():
 				self.jumped = False
 			if key[pygame.K_LEFT]:
 				dx -= 5
-				self.counter += 1 
+				self.counter += 2 #하드모드의 경우 +=2, 이지모드의 경우 +=1
 				self.direction = -1
 			if key[pygame.K_RIGHT]:
 				dx += 5
-				self.counter += 1 
+				self.counter += 2 #하드모드의 경우 +=2, 이지모드의 경우 +=1
 				self.direction = 1
 			if key[pygame.K_LEFT] == False and key[pygame.K_RIGHT] == False:
 				self.counter = 0
@@ -418,8 +418,8 @@ world = World(world_data)
 #create buttons
 restart_button = Button(screen_width // 2 - 50, screen_height // 2 + 100, restart_img)
 start_button = Button(screen_width // 2 - 160, screen_height // 2-300, start_img)
-option_button = Button(screen_width // 2 - 160, screen_height // 2-150, option_img)
-score_button = Button(screen_width // 2 - 160, screen_height // 2, score_img)
+store_button = Button(screen_width // 2 - 160, screen_height // 2-150, store_img)
+option_button = Button(screen_width // 2 - 160, screen_height // 2, option_img)
 exit_button = Button(screen_width // 2 - 160, screen_height // 2+150, exit_img)
 
 
@@ -436,9 +436,9 @@ while run:
 			run = False     
 		if start_button.draw(): # start 버튼 누르면 
 			main_menu = False
-		if option_button.draw(): # option 버튼 누르면 
+		if store_button.draw(): # store 버튼 누르면 
 			main_menu = False
-		if score_button.draw(): # score 버튼 누르면 
+		if option_button.draw(): # option 버튼 누르면 
 			main_menu = False	
 	else:
 		world.draw()
