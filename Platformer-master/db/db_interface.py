@@ -39,4 +39,3 @@ class InterfDB:
             return False
 
 
-db = InterfDB()

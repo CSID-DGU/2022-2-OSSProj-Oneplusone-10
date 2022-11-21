@@ -450,18 +450,20 @@ while run:
 			main_menu = 3
    
 	
-	elif main_menu == 2:  # store 버튼 눌렀을때 페이지 
+	elif main_menu == 2:  # start 버튼 눌렀을때 페이지 
 		screen.blit(bg_img, (0,0))
 		screen.blit(sun_img, (100,100))
 
-		easy_mode_button.draw()  # easy mode & hard mode 버튼 추가해서 변경해야함 !
-		hard_mode_button.draw()
+		if easy_mode_button.draw(): # easy mode 버튼 눌렀을때 게임 실행
+			main_menu = False
+		if hard_mode_button.draw(): # hard mode 맵 만들고 하드모드 맵으로 연결되게 바꿔야 함!
+			main_menu = False
   
 	elif main_menu == 3:  # option 버튼 눌렀을때 페이지
 		screen.blit(bg_img, (0,0))
 		screen.blit(sun_img, (100,100))
   
-		sound_on_button.draw()  # sound on/off & game rule 버튼 추가해서 변경해야함 !
+		sound_on_button.draw()  
 		game_rule_button.draw() 
    
 	else:
