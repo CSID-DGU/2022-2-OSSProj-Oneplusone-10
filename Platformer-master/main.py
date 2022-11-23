@@ -51,9 +51,8 @@ hard_mode_img = pygame.image.load('img/hard_mode_bt.png')
 game_rule_img = pygame.image.load('img/game_rule_bt.png')
 sound_on_img = pygame.image.load('img/sound_on_bt.png')
 sound_off_img = pygame.image.load('img/sound_off_bt.png')
-restart_img = pygame.image.load('restart_bt.png')
-home_img = pygame.image.load('home_bt.png')
-back_img = pygame.image.load('back_bt.png')
+home_img = pygame.image.load('img/home_bt.png')
+back_img = pygame.image.load('img/back_bt.png')
 
 
 
@@ -437,7 +436,7 @@ game_rule_button = Button(screen_width // 2 - 160, screen_height // 2+100, game_
 sound_on_button = Button(screen_width // 2 - 160, screen_height // 2-100, sound_on_img)
 sound_off_button = Button(screen_width // 2 - 160, screen_height // 2-100, sound_off_img)
 restart_button = Button(screen_width // 2 - 50, screen_height // 2 + 100, restart_img)
-home_button = Button(screen_width // 2 - 50, screen_height // 2 + 100, home_img)
+home_button = Button(screen_width // 2 - 50, screen_height // 2 - 100, home_img)
 back_button = Button(screen_width // 2 - 50, screen_height // 2 + 100, back_img)
 
 run = True
