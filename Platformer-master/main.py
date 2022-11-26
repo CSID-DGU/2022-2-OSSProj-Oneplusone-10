@@ -50,6 +50,7 @@ easy_mode_img = pygame.image.load('img/easy_mode_bt.png')
 hard_mode_img = pygame.image.load('img/hard_mode_bt.png')
 game_rule_img = pygame.image.load('img/game_rule_bt.png')
 sound_on_img = pygame.image.load('img/sound_on_bt.png')
+back_img = pygame.image.load('img/btn_back.png')
 
 
 #load sounds
@@ -430,6 +431,7 @@ easy_mode_button = Button(screen_width // 2 - 160, screen_height // 2-100, easy_
 hard_mode_button = Button(screen_width // 2 - 160, screen_height // 2+100, hard_mode_img)
 game_rule_button = Button(screen_width // 2 - 160, screen_height // 2+100, game_rule_img)
 sound_on_button = Button(screen_width // 2 - 160, screen_height // 2-100, sound_on_img)
+back_img_button = Button(screen_width // 2 - 470, screen_height // 2-470, back_img)
 
 run = True
 while run:
@@ -454,6 +456,8 @@ while run:
 		screen.blit(bg_img, (0,0))
 		screen.blit(sun_img, (100,100))
 
+		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 메인 메뉴 페이지로
+			main_menu = True
 		if easy_mode_button.draw(): # easy mode 버튼 눌렀을때 게임 실행
 			main_menu = False
 		if hard_mode_button.draw(): # hard mode 맵 만들고 하드모드 맵으로 연결되게 바꿔야 함!
@@ -463,6 +467,8 @@ while run:
 		screen.blit(bg_img, (0,0))
 		screen.blit(sun_img, (100,100))
   
+		if back_img_button.draw():
+			main_menu = True
 		sound_on_button.draw()  
 		game_rule_button.draw() 
    
