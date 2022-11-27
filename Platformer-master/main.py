@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 from pygame import mixer
+from game_value import *
 import pickle
 from os import path
 
@@ -9,10 +10,6 @@ mixer.init()
 pygame.init()
 
 clock = pygame.time.Clock()
-fps = 60
-
-screen_width = 1000
-screen_height = 1000
 
 screen = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE)
 pygame.display.set_caption('Platformer')
@@ -21,18 +18,6 @@ pygame.display.set_caption('Platformer')
 #define font
 font = pygame.font.SysFont('Bauhaus 93', 70)
 font_score = pygame.font.SysFont('Bauhaus 93', 30)
-
-
-#define game variables
-tile_size = 50
-game_over = 0  # game over 일때를 0으로 설정
-main_menu = True  
-level = 1
-max_levels = 5
-hard_level = 1
-hard_max_levels = 5
-score = 0
-
 
 #define colours
 white = (255, 255, 255)
