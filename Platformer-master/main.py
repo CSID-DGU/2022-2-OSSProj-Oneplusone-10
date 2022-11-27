@@ -28,7 +28,9 @@ tile_size = 50
 game_over = 0  # game over 일때를 0으로 설정
 main_menu = True  
 level = 1
-max_levels = 7 
+max_levels = 5
+hard_level = 1
+hard_max_levels = 5
 score = 0
 
 
@@ -50,7 +52,6 @@ easy_mode_img = pygame.image.load('img/easy_mode_bt.png')
 hard_mode_img = pygame.image.load('img/hard_mode_bt.png')
 game_rule_img = pygame.image.load('img/game_rule_bt.png')
 sound_on_img = pygame.image.load('img/sound_on_bt.png')
-back_img = pygame.image.load('img/btn_back.png')
 sound_off_img = pygame.image.load('img/sound_off_bt.png')
 home_img = pygame.image.load('img/home_bt.png')
 back_img = pygame.image.load('img/back_bt.png')
@@ -83,7 +84,7 @@ def reset_level(level):
 	exit_group.empty()
 
 	#load in level data and create world
-	if path.exists(f'level{level}_data'):
+	if path.exists(f'level{level}_data'):  # 파일 또는 폴더 존재 여부 확인
 		pickle_in = open(f'level{level}_data', 'rb')
 		world_data = pickle.load(pickle_in)
 	world = World(world_data)
@@ -91,6 +92,24 @@ def reset_level(level):
 	score_coin = Coin(tile_size // 2, tile_size // 2)
 	coin_group.add(score_coin)
 	return world 
+
+def reset_hard_level(hard_level):
+	player.reset(100, screen_height - 130)
+	blob_group.empty()
+	platform_group.empty()
+	coin_group.empty()
+	lava_group.empty()
+	exit_group.empty()
+
+	#load in level data and create world
+	if path.exists(f'hard_level{hard_level}_data'):  # 파일 또는 폴더 존재 여부 확인
+		pickle_in = open(f'hard_level{hard_level}_data', 'rb')
+		hard_world_data = pickle.load(pickle_in)
+	hard_world = World(hard_world_data)
+	#create dummy coin for showing the score
+	score_coin = Coin(tile_size // 2, tile_size // 2)
+	coin_group.add(score_coin)
+	return hard_world 
 
 
 class Button():
@@ -418,13 +437,18 @@ exit_group = pygame.sprite.Group()
 score_coin = Coin(tile_size // 2, tile_size // 2)
 coin_group.add(score_coin)
 
-#load in level data and create world
-if path.exists(f'level{level}_data'):
-	pickle_in = open(f'level{level}_data', 'rb')
-	world_data = pickle.load(pickle_in)
-world = World(world_data)
+# load in level data and create world
+# if path.exists(f'level{level}_data'):
+# 	pickle_in = open(f'level{level}_data', 'rb')
+# 	world_data = pickle.load(pickle_in)
+# world_easy = World(world_data)
 
+# if path.exists(f'hard_level{hard_level}_data'):
+# 	pickle_in = open(f'hard_level{hard_level}_data', 'rb')
+# 	hard_world_data = pickle.load(pickle_in)
+# world_hard = World(hard_world_data)
 
+ 
 #create buttons
 
 start_button = Button(screen_width // 2 - 160, screen_height // 2-300, start_img)
@@ -439,12 +463,12 @@ back_img_button = Button(screen_width // 2 - 470, screen_height // 2-470, back_i
 sound_off_button = Button(screen_width // 2 - 160, screen_height // 2-100, sound_off_img)
 restart_button = Button(screen_width // 2 - 50, screen_height // 2 + 100, restart_img)
 home_button = Button(screen_width // 2 - 50, screen_height // 2 - 100, home_img)
-back_button = Button(screen_width // 2 - 50, screen_height // 2 + 100, back_img)
+
 
 
 run = True
 while run:
-
+	# print(main_menu)
 	clock.tick(fps)
 
 	screen.blit(bg_img, (0, 0))
@@ -468,9 +492,11 @@ while run:
 		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 메인 메뉴 페이지로
 			main_menu = True
 		if easy_mode_button.draw(): # easy mode 버튼 눌렀을때 게임 실행
-			main_menu = False
+			main_menu = "easy"
+			flag = False
 		if hard_mode_button.draw(): # hard mode 맵 만들고 하드모드 맵으로 연결되게 바꿔야 함!
-			main_menu = False
+			main_menu = "hard"
+			flag = False
   
 	elif main_menu == 3:  # option 버튼 눌렀을때 페이지
 		screen.blit(bg_img, (0,0))
@@ -480,10 +506,12 @@ while run:
 			main_menu = True
 		sound_on_button.draw()  
 		game_rule_button.draw() 
-   
-	else:
+	elif main_menu == 'easy' and not flag:
+		flag = True
+		world = reset_level(level)
 		world.draw()
-
+	elif main_menu == "easy" and flag:
+		world.draw()
 		if game_over == 0:
 			blob_group.update()
 			platform_group.update()
@@ -525,6 +553,57 @@ while run:
 					#reset level
 					world_data = []
 					world = reset_level(level)
+					game_over = 0
+					score = 0
+	elif main_menu == 'hard' and not flag:
+		flag = True
+		world = reset_hard_level(level)
+		world.draw()
+	elif main_menu == "hard" and flag:
+	
+		world.draw()
+	
+		if game_over == 0:
+			blob_group.update()
+			platform_group.update()
+			#update score
+			#check if a coin has been collected
+			if pygame.sprite.spritecollide(player, coin_group, True):
+				score += 1
+				coin_fx.play()
+			draw_text('X ' + str(score), font_score, white, tile_size - 10, 10)
+		
+		blob_group.draw(screen)
+		platform_group.draw(screen)
+		lava_group.draw(screen)
+		coin_group.draw(screen)
+		exit_group.draw(screen)
+
+		game_over = player.update(game_over)
+
+		#if player has died
+		if game_over == -1:
+				hard_world_data = []
+				world = reset_hard_level(hard_level)
+				game_over = 0
+				# score = 0   # 획득한 코인 리셋 안되게 이코드 주석
+
+		#if player has completed the level
+		if game_over == 1:
+			#reset game and go to next level
+			hard_level += 1
+			if hard_level <= hard_max_levels:
+				#reset hard_level
+				hard_world_data = []
+				world = reset_hard_level(hard_level)
+				game_over = 0
+			else:
+				draw_text('YOU WIN!', font, blue, (screen_width // 2) - 140, screen_height // 2)
+				if restart_button.draw():
+					hard_level = 1
+					#reset hard_level
+					hard_world_data = []
+					world = reset_hard_level(hard_level)
 					game_over = 0
 					score = 0
 
