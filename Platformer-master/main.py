@@ -41,6 +41,8 @@ sound_off_img = pygame.image.load('img/sound_off_bt.png')
 home_img = pygame.image.load('img/home_bt.png')
 back_img = pygame.image.load('img/back_bt.png')
 game_rule_page = pygame.image.load('img/game_rule_pg.jpg')
+skin_img = pygame.image.load('img/skin_bt.png')
+my_skin_img = pygame.image.load('img/my_skin_bt.png')
 
 
 
@@ -449,7 +451,8 @@ back_img_button = Button(screen_width // 2 - 470, screen_height // 2-470, back_i
 sound_off_button = Button(screen_width // 2 - 160, screen_height // 2-100, sound_off_img)
 restart_button = Button(screen_width // 2 - 50, screen_height // 2 + 100, restart_img)
 home_button = Button(screen_width // 2 - 50, screen_height // 2 - 100, home_img)
-
+skin_button = Button(screen_width // 2 - 160, screen_height // 2-100, skin_img)
+my_skin_button = Button(screen_width // 2 - 160, screen_height // 2+100, my_skin_img)
 
 
 run = True
@@ -466,9 +469,9 @@ while run:
 		if start_button.draw(): # start 버튼 누르면 
 			main_menu = 2
 		if store_button.draw(): # store 버튼 누르면 
-			main_menu = FALSE
-		if option_button.draw(): # option 버튼 누르면 
 			main_menu = 3
+		if option_button.draw(): # option 버튼 누르면 
+			main_menu = 4
    
 	
 	elif main_menu == 2:  # start 버튼 눌렀을때 페이지 
@@ -483,15 +486,24 @@ while run:
 		if hard_mode_button.draw(): # hard mode 맵 만들고 하드모드 맵으로 연결되게 바꿔야 함!
 			main_menu = "hard"
 			flag = False
-  
-	elif main_menu == 3:  # option 버튼 눌렀을때 페이지
+   
+	elif main_menu == 3:  # start 버튼 눌렀을때 페이지 
+		screen.blit(bg_img, (0,0))
+		screen.blit(sun_img, (100,100))
+
+		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 메인 메뉴 페이지로
+			main_menu = True
+		skin_button.draw()  
+		my_skin_button.draw()
+   
+	elif main_menu == 4:  # option 버튼 눌렀을때 페이지
 		screen.blit(bg_img, (0,0))
 		screen.blit(sun_img, (100,100))
   
 		if back_img_button.draw():
 			main_menu = True
 		sound_on_button.draw()  
-		game_rule_button.draw() 
+		game_rule_button.draw()
 	elif main_menu == 'easy' and not flag:
 		flag = True
 		world = reset_level(level)
