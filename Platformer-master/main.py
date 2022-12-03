@@ -490,12 +490,29 @@ while run:
   
 		if back_img_button.draw():
 			main_menu = True
-		sound_on_button.draw()  
-		game_rule_button.draw() 
+
+		if sound_on_button.draw():
+			pygame.mixer.music.pause()
+			
+
+		if game_rule_button.draw():
+			main_menu = 3.5
+
+	elif main_menu == 3.5:
+		screen.blit(bg_img, (0,0))
+		screen.blit(sun_img, (100,100))
+		screen.blit(game_rule_page, (0,0))
+		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 옵션 페이지로
+			main_menu = 3
+
+
+
 	elif main_menu == 'easy' and not flag:
 		flag = True
 		world = reset_level(level)
 		world.draw()
+
+
 	elif main_menu == "easy" and flag:
 		world.draw()
 		if game_over == 0:
