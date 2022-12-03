@@ -500,8 +500,45 @@ while run:
 
 		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 메인 메뉴 페이지로
 			main_menu = True
-		skin_button.draw()  
+		if skin_button.draw():
+			main_menu = 3.5
 		my_skin_button.draw()
+	
+	elif main_menu == 3.5: #skin 페이지
+		screen.blit(bg_img, (0,0))
+		screen.blit(sun_img, (100,100))
+
+		coin_img = pygame.transform.scale(coin_img, (25,25)) #코인 이미지 리사이징 해서 불러오기
+
+		black = (0,0,0) #검정
+
+		#겨울 아코
+		my_font = pygame.font.Font('DungGeunMo.ttf', 25)  #폰트 설정
+		winter_ako_img = pygame.transform.scale(winter_ako_img, (200,200))
+		screen.blit(winter_ako_img, (100,200))
+		item1 = my_font.render("50",True,black)  #텍스트가 표시된 Surface 를 만듬
+		screen.blit(coin_img, (200,450))
+		screen.blit(item1,(240,450)) #텍스트를 화면에 출력
+		buy_button1.draw()
+  
+		#과잠 아코
+		school_ako_img = pygame.transform.scale(school_ako_img, (200,200))
+		screen.blit(school_ako_img, (400,200))
+		item2 = my_font.render("100",True,black)  #텍스트가 표시된 Surface 를 만듬
+		screen.blit(coin_img, (470,450))
+		screen.blit(item2,(510,450)) #텍스트를 화면에 출력
+		buy_button2.draw()
+
+		#졸업 아코
+		graduation_ako_img = pygame.transform.scale(graduation_ako_img, (200,200))
+		screen.blit(graduation_ako_img, (700,200))
+		item3 = my_font.render("150",True,black)  #텍스트가 표시된 Surface 를 만듬
+		screen.blit(coin_img, (770,450))
+		screen.blit(item3,(810,450)) #텍스트를 화면에 출력
+		buy_button3.draw()
+  
+		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 메인 메뉴 페이지로
+			main_menu = True
    
 	elif main_menu == 4:  # option 버튼 눌렀을때 페이지
 		screen.blit(bg_img, (0,0))
