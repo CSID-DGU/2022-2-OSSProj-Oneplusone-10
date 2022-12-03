@@ -44,8 +44,11 @@ game_rule_page = pygame.image.load('img/game_rule_pg.jpg')
 skin_img = pygame.image.load('img/skin_bt.png')
 my_skin_img = pygame.image.load('img/my_skin_bt.png')
 playing_home_img = pygame.image.load('img/playing_home_bt.png')
-
-
+winter_ako_img = pygame.image.load('img/winter_ako1.png')
+school_ako_img = pygame.image.load('img/school_ako1.png')
+graduation_ako_img = pygame.image.load('img/graduation_ako1.png')
+coin_img = pygame.image.load('img/coin.png')
+buy_img = pygame.image.load('img/buy_bt.png')
 
 #load sounds
 pygame.mixer.music.load('img/music.wav')
@@ -455,6 +458,9 @@ home_button = Button(screen_width // 2 - 50, screen_height // 2 - 100, home_img)
 skin_button = Button(screen_width // 2 - 160, screen_height // 2-100, skin_img)
 my_skin_button = Button(screen_width // 2 - 160, screen_height // 2+100, my_skin_img)
 playing_home_button = Button(screen_width // 2 + 460 , screen_height // 2-490, playing_home_img)
+buy_button1 = Button(screen_width// 2 -320, screen_height// 2, buy_img)
+buy_button2 = Button(screen_width// 2-30, screen_height// 2, buy_img)
+buy_button3 = Button(screen_width// 2+270, screen_height// 2, buy_img)
 
 run = True
 while run:
