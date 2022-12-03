@@ -43,6 +43,7 @@ back_img = pygame.image.load('img/back_bt.png')
 game_rule_page = pygame.image.load('img/game_rule_pg.jpg')
 skin_img = pygame.image.load('img/skin_bt.png')
 my_skin_img = pygame.image.load('img/my_skin_bt.png')
+playing_home_img = pygame.image.load('img/playing_home_bt.png')
 
 
 
@@ -453,7 +454,7 @@ restart_button = Button(screen_width // 2 - 50, screen_height // 2 + 100, restar
 home_button = Button(screen_width // 2 - 50, screen_height // 2 - 100, home_img)
 skin_button = Button(screen_width // 2 - 160, screen_height // 2-100, skin_img)
 my_skin_button = Button(screen_width // 2 - 160, screen_height // 2+100, my_skin_img)
-
+playing_home_button = Button(screen_width // 2 + 460 , screen_height // 2-490, playing_home_img)
 
 run = True
 while run:
@@ -524,6 +525,8 @@ while run:
 
 	elif main_menu == "easy" and flag:
 		world.draw()
+		if playing_home_button.draw():
+			main_menu = True
 		if game_over == 0:
 			blob_group.update()
 			platform_group.update()
@@ -572,9 +575,9 @@ while run:
 		world = reset_hard_level(level)
 		world.draw()
 	elif main_menu == "hard" and flag:
-	
 		world.draw()
-	
+		if playing_home_button.draw():
+			main_menu = True
 		if game_over == 0:
 			blob_group.update()
 			platform_group.update()
