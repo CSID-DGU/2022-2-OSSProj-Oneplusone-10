@@ -27,7 +27,7 @@ blue = (0, 0, 255)
 #load images
 sun_img = pygame.image.load('img/sun.png')
 bg_img = pygame.image.load('img/sky.png')
-restart_img = pygame.image.load('img/restart_btn.png')
+restart_img = pygame.image.load('img/restart_bt.png')
 start_img = pygame.image.load('img/start_bt.png')
 store_img = pygame.image.load('img/store_bt.png')
 option_img = pygame.image.load('img/option_bt.png')
@@ -540,24 +540,36 @@ while run:
 		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 메인 메뉴 페이지로
 			main_menu = True
    
-	elif main_menu == 4:  # option 버튼 눌렀을때 페이지
+	elif main_menu == 4:  # option 버튼 눌렀을때 페이지(디폴트 : 소리켜져있음)
 		screen.blit(bg_img, (0,0))
 		screen.blit(sun_img, (100,100))
-  
+		pygame.mixer.music.unpause() 
 		if back_img_button.draw():
 			main_menu = True
-
-		if sound_on_button.draw(): #sound on 버튼 누르면 음악 임시멈춤
-			pygame.mixer.music.pause() 
-
+		if sound_off_button.draw(): #sound on 버튼 누르면 음악 임시멈춤
+			main_menu=4.3
 		if game_rule_button.draw() :
-			main_menu = 4.5
+			main_menu = 4.7
 
-	elif main_menu == 4.5:
+	elif main_menu == 4.3: #옵션화면_소리 껐을때
+		pygame.mixer.music.pause()
+		if back_img_button.draw():
+			main_menu = True
+		if sound_on_button.draw(): #sound off 버튼 누르면 음악 다시 시작
+			main_menu=4
+		if game_rule_button.draw() :
+			main_menu = 4.7
+		
+
+	elif main_menu == 4.7: #게임 룰 페이지
 		screen.blit(bg_img, (0,0))
 		screen.blit(sun_img, (100,100))
 		screen.blit(game_rule_page, (0,0))
 		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 옵션 페이지로
+			if pygame.mixer.music. get_busy ( ) :
+				main_menu = 4
+			elif not pygame.mixer.music. get_busy ( ) :
+				main_menu = 4.3
 			main_menu = 4
 
 	elif main_menu == 'easy' and not flag:
