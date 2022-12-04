@@ -489,9 +489,13 @@ while run:
 			main_menu = True
 		if easy_mode_button.draw(): # easy mode 버튼 눌렀을때 게임 실행
 			main_menu = "easy"
+			start_ticks = pygame.time.get_ticks() #시작 시간 설정
+			total_time = 600 #초안 그래도 10분, 600초로 설정(임시)
 			flag = False
 		if hard_mode_button.draw(): # hard mode 맵 만들고 하드모드 맵으로 연결되게 바꿔야 함!
 			main_menu = "hard"
+			start_ticks = pygame.time.get_ticks() #시작 시간 설정
+			total_time = 600 #초안 그래도 10분, 600초로 설정(임시)
 			flag = False
    
 	elif main_menu == 3:  # start 버튼 눌렀을때 페이지 
