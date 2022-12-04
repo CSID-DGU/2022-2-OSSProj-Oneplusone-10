@@ -503,7 +503,7 @@ while run:
 		screen.blit(sun_img, (100,100))
 
 		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 메인 메뉴 페이지로
-			main_menu = True
+			main_menu = True 
 		if skin_button.draw():
 			main_menu = 3.5
 		my_skin_button.draw()
