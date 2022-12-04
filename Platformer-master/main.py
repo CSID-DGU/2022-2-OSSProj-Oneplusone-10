@@ -503,7 +503,7 @@ while run:
 		screen.blit(sun_img, (100,100))
 
 		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 메인 메뉴 페이지로
-			main_menu = True
+			main_menu = True 
 		if skin_button.draw():
 			main_menu = 3.5
 		my_skin_button.draw()
@@ -587,6 +587,21 @@ while run:
 		if playing_home_button.draw():
 			main_menu = True
 		if game_over == 0:
+			
+			elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000 # 타이머 시간을 1000으로 나누어 초단위로 표시 (default: ms 단위)
+			game_font = pygame.font.Font(None, 40)
+			timer = game_font.render(str(int(total_time - elapsed_time)), True, (255,255,255)) # 타이머 위치 지정
+			screen.blit(timer, (900,10)) # 타이머 위치 지정
+			if total_time - elapsed_time <= 0: 
+				running = False
+				restart_button = Button(screen_width // 2 - 160, screen_height // 2 , restart_img)
+				if restart_button.draw():
+					flag = True
+					world = reset_level(level)
+					world.draw()
+				if exit_button.draw():
+					main_menu = True
+
 			blob_group.update()
 			platform_group.update()
 			#update score
@@ -638,6 +653,21 @@ while run:
 		if playing_home_button.draw():
 			main_menu = True
 		if game_over == 0:
+			elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000 # 타이머 시간을 1000으로 나누어 초단위로 표시 (default: ms 단위)
+			game_font = pygame.font.Font(None, 40)
+			timer = game_font.render(str(int(total_time - elapsed_time)), True, (255,255,255)) # 타이머 위치 지정
+			screen.blit(timer, (900,10)) # 타이머 위치 지정
+			
+			if total_time - elapsed_time <= 0: 
+				running = False
+				
+				restart_button = Button(screen_width // 2 - 160, screen_height // 2 , restart_img)
+				if restart_button.draw():
+					flag = True
+					world = reset_level(level)
+					world.draw()
+				if exit_button.draw():
+					main_menu = True
 			blob_group.update()
 			platform_group.update()
 			#update score
