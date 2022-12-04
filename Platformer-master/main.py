@@ -15,6 +15,7 @@ screen = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE
 pygame.display.set_caption('Platformer')
 
 
+
 #define font
 font = pygame.font.SysFont('Bauhaus 93', 70)
 font_score = pygame.font.SysFont('Bauhaus 93', 30)
@@ -382,11 +383,8 @@ class Platform(pygame.sprite.Sprite):
 		if abs(self.move_counter) > 50:
 			self.move_direction *= -1
 			self.move_counter *= -1
-
-
-
-
-
+   
+   
 class Lava(pygame.sprite.Sprite):
 	def __init__(self, x, y):
 		pygame.sprite.Sprite.__init__(self)
@@ -419,6 +417,7 @@ class Exit(pygame.sprite.Sprite):
 
 player = Player(100, screen_height - 130)
 
+# 각 스프라이트 마다 group을 지정
 blob_group = pygame.sprite.Group()
 platform_group = pygame.sprite.Group()
 lava_group = pygame.sprite.Group()
@@ -429,7 +428,8 @@ exit_group = pygame.sprite.Group()
 score_coin = Coin(tile_size // 2, tile_size // 2)
 coin_group.add(score_coin)
 
-# load in level data and create world
+# 맵 로드해주는 코드를 이지모드와 하드모드로 구분하여 진행하므로 각각의 게임 모드안에 reset_level 함수를 호출하여 맵을 로드시킴 
+# load in level data and create world 
 # if path.exists(f'level{level}_data'):
 # 	pickle_in = open(f'level{level}_data', 'rb')
 # 	world_data = pickle.load(pickle_in)
@@ -492,7 +492,7 @@ while run:
 			start_ticks = pygame.time.get_ticks() #시작 시간 설정
 			total_time = 600 #초안 그래도 10분, 600초로 설정(임시)
 			flag = False
-		if hard_mode_button.draw(): # hard mode 맵 만들고 하드모드 맵으로 연결되게 바꿔야 함!
+		if hard_mode_button.draw(): 
 			main_menu = "hard"
 			start_ticks = pygame.time.get_ticks() #시작 시간 설정
 			total_time = 600 #초안 그래도 10분, 600초로 설정(임시)
@@ -586,6 +586,8 @@ while run:
 		world.draw()
 		if playing_home_button.draw():
 			main_menu = True
+			level = 1
+   
 		if game_over == 0:
 			
 			elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000 # 타이머 시간을 1000으로 나누어 초단위로 표시 (default: ms 단위)
@@ -608,8 +610,8 @@ while run:
 			#check if a coin has been collected
 			if pygame.sprite.spritecollide(player, coin_group, True):
 				score += 1
-				coin_fx.play()
-			draw_text('X ' + str(score), font_score, white, tile_size - 10, 10)
+				coin_fx.play()  # 코인 먹을때 사운드 실행
+			draw_text('X ' + str(score), font_score, white, tile_size - 10, 10)  # 코인 스코어 왼쪽 상단에 가시화
 		
 		blob_group.draw(screen)
 		platform_group.draw(screen)
@@ -644,14 +646,18 @@ while run:
 					world = reset_level(level)
 					game_over = 0
 					score = 0
+     
 	elif main_menu == 'hard' and not flag:
 		flag = True
 		world = reset_hard_level(level)
 		world.draw()
+  
 	elif main_menu == "hard" and flag:
 		world.draw()
 		if playing_home_button.draw():
 			main_menu = True
+			hard_level = 1
+   
 		if game_over == 0:
 			elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000 # 타이머 시간을 1000으로 나누어 초단위로 표시 (default: ms 단위)
 			game_font = pygame.font.Font(None, 40)
