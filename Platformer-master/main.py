@@ -637,9 +637,9 @@ while run:
 				world = reset_level(level)
 				game_over = 0
 			else:
-				draw_text('YOU WIN!', font, blue, (screen_width // 2) - 140, screen_height // 2)
-				#draw_text('Congratulations. You broke the record.', font, white, (screen_width // 2) - 140, screen_height // 2)
-				#draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2) - 140, screen_height // 2)
+				draw_text('Congratulations!! You broke the record :)', font, blue, 0, screen_height // 2)
+				draw_text('(previous record:n /  current record: m)', font, white, 0, screen_height // 2+ (screen_height*0.05))
+				#draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2), screen_height // 2)
 				if home_button.draw():
 					main_menu = True
 					level = 1
@@ -717,9 +717,9 @@ while run:
 				world = reset_hard_level(hard_level)
 				game_over = 0
 			else:
-				draw_text('YOU WIN!', font, blue, (screen_width // 2) - 140, screen_height // 2)
-				#draw_text('Congratulations. You broke the record.', font, white, (screen_width // 2) - 140, screen_height // 2)
-				#draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2) - 140, screen_height // 2)
+				draw_text('Congratulations!! You broke the record :)', font, blue, 0, screen_height // 2)
+				draw_text('(previous record:n /  current record: m)', font, white, 0, screen_height // 2+ (screen_height*0.05))
+				#draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2), screen_height // 2)
 				if home_button.draw():
 					main_menu = True
 					hard_level = 1
