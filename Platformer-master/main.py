@@ -574,7 +574,6 @@ while run:
 				main_menu = 4
 			elif not pygame.mixer.music. get_busy ( ) :
 				main_menu = 4.3
-			main_menu = 4
 
 	elif main_menu == 'easy' and not flag:
 		flag = True
@@ -639,7 +638,11 @@ while run:
 				game_over = 0
 			else:
 				draw_text('YOU WIN!', font, blue, (screen_width // 2) - 140, screen_height // 2)
-				if restart_button.draw():
+				#draw_text('Congratulations. You broke the record.', font, white, (screen_width // 2) - 140, screen_height // 2)
+				#draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2) - 140, screen_height // 2)
+				if home_button.draw():
+					main_menu = 2
+				elif restart_button.draw():
 					level = 1
 					#reset level
 					world_data = []
@@ -709,7 +712,11 @@ while run:
 				game_over = 0
 			else:
 				draw_text('YOU WIN!', font, blue, (screen_width // 2) - 140, screen_height // 2)
-				if restart_button.draw():
+				#draw_text('Congratulations. You broke the record.', font, white, (screen_width // 2) - 140, screen_height // 2)
+				#draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2) - 140, screen_height // 2)
+				if home_button.draw():
+					main_menu = 2
+				elif restart_button.draw():
 					hard_level = 1
 					#reset hard_level
 					hard_world_data = []
