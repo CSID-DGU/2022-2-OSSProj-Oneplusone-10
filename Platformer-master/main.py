@@ -641,14 +641,20 @@ while run:
 				#draw_text('Congratulations. You broke the record.', font, white, (screen_width // 2) - 140, screen_height // 2)
 				#draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2) - 140, screen_height // 2)
 				if home_button.draw():
-					main_menu = 2
+					main_menu = True
+					level = 1
+					#reset level
+					world_data = []
+					world = reset_level(level)
+					game_over = 0
+     
 				elif restart_button.draw():
 					level = 1
 					#reset level
 					world_data = []
 					world = reset_level(level)
 					game_over = 0
-					score = 0
+					
      
 	elif main_menu == 'hard' and not flag:
 		flag = True
@@ -715,14 +721,20 @@ while run:
 				#draw_text('Congratulations. You broke the record.', font, white, (screen_width // 2) - 140, screen_height // 2)
 				#draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2) - 140, screen_height // 2)
 				if home_button.draw():
-					main_menu = 2
+					main_menu = True
+					hard_level = 1
+					#reset hard_level
+					hard_world_data = []
+					world = reset_hard_level(hard_level)
+					game_over = 0
+     
 				elif restart_button.draw():
 					hard_level = 1
 					#reset hard_level
 					hard_world_data = []
 					world = reset_hard_level(hard_level)
 					game_over = 0
-					score = 0
+				
 
 	for event in pygame.event.get():  # 어떤 이벤트가 발생하였는가?
 		if event.type == pygame.QUIT:  # 창이 닫히는 이벤트가 발생하였는가?
