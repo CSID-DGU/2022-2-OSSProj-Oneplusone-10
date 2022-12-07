@@ -490,12 +490,12 @@ while run:
 		if easy_mode_button.draw(): # easy mode 버튼 눌렀을때 게임 실행
 			main_menu = "easy"
 			start_ticks = pygame.time.get_ticks() #시작 시간 설정
-			total_time = 600 #초안 그래도 10분, 600초로 설정(임시)
+			total_time = 6 #초안 그래도 10분, 600초로 설정(임시)
 			flag = False
 		if hard_mode_button.draw(): 
 			main_menu = "hard"
 			start_ticks = pygame.time.get_ticks() #시작 시간 설정
-			total_time = 600 #초안 그래도 10분, 600초로 설정(임시)
+			total_time = 6 #초안 그래도 10분, 600초로 설정(임시)
 			flag = False
    
 	elif main_menu == "skin":  #3 start 버튼 눌렀을때 페이지 
@@ -594,12 +594,9 @@ while run:
 			timer = game_font.render(str(int(total_time - elapsed_time)), True, (255,255,255)) # 타이머 위치 지정
 			screen.blit(timer, (900,10)) # 타이머 위치 지정
 			if total_time - elapsed_time <= 0: 
-				running = False
 				restart_button = Button(screen_width // 2 - 160, screen_height // 2 , restart_img)
 				if restart_button.draw():
-					flag = True
-					world = reset_level(level)
-					world.draw()
+					main_menu = "main_screen"
 				if exit_button.draw():
 					main_menu = True
 
@@ -674,13 +671,9 @@ while run:
 			screen.blit(timer, (900,10)) # 타이머 위치 지정
 			
 			if total_time - elapsed_time <= 0: 
-				running = False
-				
 				restart_button = Button(screen_width // 2 - 160, screen_height // 2 , restart_img)
 				if restart_button.draw():
-					flag = True
-					world = reset_level(level)
-					world.draw()
+					main_menu = "main_screen"
 				if exit_button.draw():
 					main_menu = True
 			blob_group.update()
