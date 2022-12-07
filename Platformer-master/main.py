@@ -26,11 +26,10 @@ blue = (0, 0, 255)
 
 
 #load images
-sun_img = pygame.image.load('img/sun.png')
-bg_img = pygame.image.load('img/sky.png')
+background_img = pygame.image.load('img/background.png')
 restart_img = pygame.image.load('img/restart_bt.png')
 start_img = pygame.image.load('img/start_bt.png')
-store_img = pygame.image.load('img/store_bt.png')
+skin2_img = pygame.image.load('img/skin_bt_ver2.png')
 option_img = pygame.image.load('img/option_bt.png')
 score_img = pygame.image.load('img/score_bt.png')
 exit_img = pygame.image.load('img/exit_bt.png')
@@ -444,7 +443,7 @@ coin_group.add(score_coin)
 #create buttons
 
 start_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.3), start_img)
-store_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.15), store_img)
+skin2_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.15), skin2_img)
 option_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2, option_img)
 exit_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 + (screen_height*0.15), exit_img)
 easy_mode_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.1), easy_mode_img)
@@ -458,32 +457,29 @@ home_button = Button(screen_width // 2 - (screen_width*0.05), screen_height // 2
 skin_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.1), skin_img)
 my_skin_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 + (screen_height*0.1), my_skin_img)
 playing_home_button = Button(screen_width // 2 + (screen_width*0.46) , screen_height // 2 - (screen_height*0.49), playing_home_img)
-buy_button1 = Button(screen_width// 2 - (screen_width*0.32), screen_height// 2, buy_img)
-buy_button2 = Button(screen_width// 2 - (screen_width*0.03), screen_height// 2, buy_img)
-buy_button3 = Button(screen_width// 2 + (screen_width*0.27), screen_height// 2, buy_img)
-
+buy_button1 = Button(screen_width// 2 - (screen_width*0.33), screen_height// 2+(screen_height*0.1), buy_img)
+buy_button2 = Button(screen_width// 2 - (screen_width*0.04), screen_height// 2+(screen_height*0.1), buy_img)
+buy_button3 = Button(screen_width // 2 + (screen_width*0.26), screen_height// 2+(screen_height*0.1), buy_img)
 run = True
 while run:
 	# print(main_menu)
 	clock.tick(fps)
 
-	screen.blit(bg_img, (0, 0))
-	screen.blit(sun_img, (100, 100))
+	screen.blit(background_img, (0, 0))
 
 	if main_menu == True:
 		if exit_button.draw(): # exit 버튼 누르면 while 반복 루프에서 벗어남
 			run = False     
 		if start_button.draw(): # start 버튼 누르면 
 			main_menu = "main_screen" #2
-		if store_button.draw(): # store 버튼 누르면 
+		if skin2_button.draw(): # store 버튼 누르면 
 			main_menu = "skin" #3
 		if option_button.draw(): # option 버튼 누르면 
 			main_menu = "option" #4
    
 	
 	elif main_menu == "main_screen":  #2 start 버튼 눌렀을때 페이지 
-		screen.blit(bg_img, (0,0))
-		screen.blit(sun_img, (100,100))
+		screen.blit(background_img, (0,0))
 
 		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 메인 메뉴 페이지로
 			main_menu = True
@@ -499,54 +495,34 @@ while run:
 			flag = False
    
 	elif main_menu == "skin":  #3 start 버튼 눌렀을때 페이지 
-		screen.blit(bg_img, (0,0))
-		screen.blit(sun_img, (100,100))
+		screen.blit(background_img, (0,0))
 
 		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 메인 메뉴 페이지로
 			main_menu = True 
-		if skin_button.draw():
-			main_menu = 3.5
-		my_skin_button.draw()
-	
-	elif main_menu == 3.5: #skin 페이지
-		screen.blit(bg_img, (0,0))
-		screen.blit(sun_img, (100,100))
+		
 
-		coin_img = pygame.transform.scale(coin_img, (25,25)) #코인 이미지 리사이징 해서 불러오기
+		#coin_img = pygame.transform.scale(coin_img, (25,25)) #코인 이미지 리사이징 해서 불러오기
 
 		black = (0,0,0) #검정
 
 		#겨울 아코
-		my_font = pygame.font.Font('DungGeunMo.ttf', 25)  #폰트 설정
 		winter_ako_img = pygame.transform.scale(winter_ako_img, (200,200))
-		screen.blit(winter_ako_img, (100,200))
-		item1 = my_font.render("50",True,black)  #텍스트가 표시된 Surface 를 만듬
-		screen.blit(coin_img, (200,450))
-		screen.blit(item1,(240,450)) #텍스트를 화면에 출력
+		screen.blit(winter_ako_img, (screen_width // 2 - (screen_width*0.4),screen_height // 2 - (screen_height*0.15)))
 		buy_button1.draw()
   
 		#과잠 아코
 		school_ako_img = pygame.transform.scale(school_ako_img, (200,200))
-		screen.blit(school_ako_img, (400,200))
-		item2 = my_font.render("100",True,black)  #텍스트가 표시된 Surface 를 만듬
-		screen.blit(coin_img, (470,450))
-		screen.blit(item2,(510,450)) #텍스트를 화면에 출력
+		screen.blit(school_ako_img, ((screen_width // 2 - (screen_width*0.1), screen_height // 2 - (screen_height*0.15))))
 		buy_button2.draw()
 
 		#졸업 아코
 		graduation_ako_img = pygame.transform.scale(graduation_ako_img, (200,200))
-		screen.blit(graduation_ako_img, (700,200))
-		item3 = my_font.render("150",True,black)  #텍스트가 표시된 Surface 를 만듬
-		screen.blit(coin_img, (770,450))
-		screen.blit(item3,(810,450)) #텍스트를 화면에 출력
+		screen.blit(graduation_ako_img, (screen_width // 2 + (screen_width*0.2),screen_height // 2 - (screen_height*0.15)))
 		buy_button3.draw()
   
-		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 메인 메뉴 페이지로
-			main_menu = True
    
 	elif main_menu == "option":  # 4 option 버튼 눌렀을때 페이지(디폴트 : 소리켜져있음)
-		screen.blit(bg_img, (0,0))
-		screen.blit(sun_img, (100,100))
+		screen.blit(background_img, (0,0))
 		pygame.mixer.music.unpause() 
 		if back_img_button.draw():
 			main_menu = True
@@ -566,8 +542,7 @@ while run:
 		
 
 	elif main_menu == "game_role": #게임 룰 페이지 4.7
-		screen.blit(bg_img, (0,0))
-		screen.blit(sun_img, (100,100))
+		screen.blit(background_img, (0,0))
 		screen.blit(game_rule_page, (0,0))
 		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 옵션 페이지로
 			if pygame.mixer.music. get_busy ( ) :
