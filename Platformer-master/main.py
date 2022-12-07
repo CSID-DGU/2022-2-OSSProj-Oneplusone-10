@@ -17,8 +17,8 @@ pygame.display.set_caption('Platformer')
 
 
 #define font
-font = pygame.font.SysFont('Bauhaus 93', 70)
-font_score = pygame.font.SysFont('Bauhaus 93', 30)
+font = pygame.font.Font('Puradak Gentle Gothic OTF.otf', 50)
+font_score = pygame.font.Font('Puradak Gentle Gothic OTF.otf', 20)
 
 #define colours
 white = (255, 255, 255)
@@ -490,12 +490,12 @@ while run:
 		if easy_mode_button.draw(): # easy mode 버튼 눌렀을때 게임 실행
 			main_menu = "easy"
 			start_ticks = pygame.time.get_ticks() #시작 시간 설정
-			total_time = 6 #초안 그래도 10분, 600초로 설정(임시)
+			total_time = 600 #초안 그래도 10분, 600초로 설정(임시)
 			flag = False
 		if hard_mode_button.draw(): 
 			main_menu = "hard"
 			start_ticks = pygame.time.get_ticks() #시작 시간 설정
-			total_time = 6 #초안 그래도 10분, 600초로 설정(임시)
+			total_time = 600 #초안 그래도 10분, 600초로 설정(임시)
 			flag = False
    
 	elif main_menu == "skin":  #3 start 버튼 눌렀을때 페이지 
@@ -590,7 +590,8 @@ while run:
 		if game_over == 0:
 			
 			elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000 # 타이머 시간을 1000으로 나누어 초단위로 표시 (default: ms 단위)
-			game_font = pygame.font.Font(None, 40)
+			game_font = pygame.font.Font('Puradak Gentle Gothic OTF.otf', 30)
+
 			timer = game_font.render(str(int(total_time - elapsed_time)), True, (255,255,255)) # 타이머 위치 지정
 			screen.blit(timer, (900,10)) # 타이머 위치 지정
 			if total_time - elapsed_time <= 0: 
@@ -634,9 +635,12 @@ while run:
 				world = reset_level(level)
 				game_over = 0
 			else:
-				draw_text('Congratulations!! You broke the record :)', font, blue, 0, screen_height // 2)
-				draw_text('(previous record:n /  current record: m)', font, white, 0, screen_height // 2+ (screen_height*0.05))
+				draw_text('축하합니다 ! :)', font, blue, screen_width // 2 -150, screen_height // 2)
+				draw_text('(이전 기록:n / 현재 기록: m)', font, white, screen_width // 2 -300, screen_height // 2+ (screen_height*0.05))
 				#draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2), screen_height // 2)
+				final_timer = game_font.render('게임 통과 소요 시간 : ' + str(int(elapsed_time)), True, (255,255,255)) # 타이머 위치 지정
+				screen.blit(final_timer, (350,10)) # 타이머 위치 지정
+    
 				if home_button.draw():
 					main_menu = True
 					level = 1
@@ -666,7 +670,7 @@ while run:
    
 		if game_over == 0:
 			elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000 # 타이머 시간을 1000으로 나누어 초단위로 표시 (default: ms 단위)
-			game_font = pygame.font.Font(None, 40)
+			game_font = pygame.font.Font('Puradak Gentle Gothic OTF.otf', 30)
 			timer = game_font.render(str(int(total_time - elapsed_time)), True, (255,255,255)) # 타이머 위치 지정
 			screen.blit(timer, (900,10)) # 타이머 위치 지정
 			
@@ -710,9 +714,11 @@ while run:
 				world = reset_hard_level(hard_level)
 				game_over = 0
 			else:
-				draw_text('Congratulations!! You broke the record :)', font, blue, 0, screen_height // 2)
-				draw_text('(previous record:n /  current record: m)', font, white, 0, screen_height // 2+ (screen_height*0.05))
+				draw_text('축하합니다 ! :)', font, blue, screen_width // 2 -150, screen_height // 2)
+				draw_text('(이전 기록:n / 현재 기록: m)', font, white, screen_width // 2 -300, screen_height // 2+ (screen_height*0.05))
 				#draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2), screen_height // 2)
+				final_timer = game_font.render('게임 통과 소요 시간 : ' + str(int(elapsed_time)), True, (255,255,255)) # 타이머 위치 지정
+				screen.blit(final_timer, (350,10)) # 타이머 위치 지정
 				if home_button.draw():
 					main_menu = True
 					hard_level = 1
