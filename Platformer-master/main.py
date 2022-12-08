@@ -544,7 +544,7 @@ while run:
 			main_menu = "game_role" #4.7
 		
 
-	elif main_menu == "game_role": #게임 룰 페이지 4.7
+	elif main_menu == "game_rule": #게임 룰 페이지 4.7
 		screen.blit(background_img, (0,0))
 		screen.blit(game_rule_page, (0,0))
 		if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 옵션 페이지로
