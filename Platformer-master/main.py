@@ -11,7 +11,7 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-screen = pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREEN)
+screen = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE)
 pygame.display.set_caption('Platformer')
 
 
@@ -450,7 +450,7 @@ back_img_button = Button(screen_width // 2 - (screen_width*0.47), screen_height 
 sound_off_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.1), sound_off_img)
 restart_button = Button(screen_width // 2 - (screen_width*0.05), screen_height // 2 + (screen_height*0.1), restart_img)
 home_button = Button(screen_width // 2 - (screen_width*0.05), screen_height // 2 - (screen_height*0.1), home_img)
-skin_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.1), skin_img)
+skin_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.15), skin_img)
 playing_home_button = Button(screen_width // 2 + (screen_width*0.46) , screen_height // 2 - (screen_height*0.49), playing_home_img)
 buy_button1 = Button(screen_width// 2 - (screen_width*0.33), screen_height// 2+(screen_height*0.1), buy_img)
 buy_button2 = Button(screen_width// 2 - (screen_width*0.04), screen_height// 2+(screen_height*0.1), buy_img)
