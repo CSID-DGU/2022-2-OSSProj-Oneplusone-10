@@ -47,6 +47,8 @@ school_ako_img = pygame.image.load('img/school_ako1.png')
 graduation_ako_img = pygame.image.load('img/graduation_ako1.png')
 coin_img = pygame.image.load('img/coin.png')
 buy_img = pygame.image.load('img/buy_bt.png')
+select_img = pygame.image.load('img/select_bt.png')
+selected_img = pygame.image.load('img/selected_bt.png')
 
 #load sounds
 pygame.mixer.music.load('img/music.wav')
@@ -455,6 +457,12 @@ playing_home_button = Button(screen_width // 2 + (screen_width*0.46) , screen_he
 buy_button1 = Button(screen_width// 2 - (screen_width*0.33), screen_height// 2+(screen_height*0.1), buy_img)
 buy_button2 = Button(screen_width// 2 - (screen_width*0.04), screen_height// 2+(screen_height*0.1), buy_img)
 buy_button3 = Button(screen_width // 2 + (screen_width*0.26), screen_height// 2+(screen_height*0.1), buy_img)
+select_button1 = Button(screen_width// 2 - (screen_width*0.33), screen_height// 2+(screen_height*0.1), select_img)
+select_button2 = Button(screen_width// 2 - (screen_width*0.04), screen_height// 2+(screen_height*0.1), select_img)
+select_button3 = Button(screen_width // 2 + (screen_width*0.26), screen_height// 2+(screen_height*0.1), select_img)
+
+
+
 run = True
 while run:
 	# print(main_menu)
@@ -503,17 +511,17 @@ while run:
 		#겨울 아코
 		winter_ako_img = pygame.transform.scale(winter_ako_img, (200,200))
 		screen.blit(winter_ako_img, (screen_width // 2 - (screen_width*0.4),screen_height // 2 - (screen_height*0.15)))
-		buy_button1.draw()
+		select_button1.draw()
   
 		#과잠 아코
 		school_ako_img = pygame.transform.scale(school_ako_img, (200,200))
 		screen.blit(school_ako_img, ((screen_width // 2 - (screen_width*0.1), screen_height // 2 - (screen_height*0.15))))
-		buy_button2.draw()
+		select_button2.draw()
 
 		#졸업 아코
 		graduation_ako_img = pygame.transform.scale(graduation_ako_img, (200,200))
 		screen.blit(graduation_ako_img, (screen_width // 2 + (screen_width*0.2),screen_height // 2 - (screen_height*0.15)))
-		buy_button3.draw()
+		select_button3.draw()
   
    
 	elif main_menu == "option":  # 4 option 버튼 눌렀을때 페이지(디폴트 : 소리켜져있음)
