@@ -5,9 +5,7 @@ from game_value import *
 import pickle
 from os import path
 
-pygame.mixer.pre_init(44100, -16, 2, 512)
-mixer.init()
-pygame.init()
+from game_button import *
 
 clock = pygame.time.Clock()
 
@@ -24,42 +22,6 @@ font_score = pygame.font.Font('Puradak Gentle Gothic OTF.otf', 20)
 white = (255, 255, 255)
 blue = (0, 0, 255)
 
-
-#load images
-background_img = pygame.image.load('img/background.png')
-restart_img = pygame.image.load('img/restart_bt.png')
-start_img = pygame.image.load('img/start_bt.png')
-option_img = pygame.image.load('img/option_bt.png')
-score_img = pygame.image.load('img/score_bt.png')
-exit_img = pygame.image.load('img/exit_bt.png')
-easy_mode_img = pygame.image.load('img/easy_mode_bt.png')
-hard_mode_img = pygame.image.load('img/hard_mode_bt.png')
-game_rule_img = pygame.image.load('img/game_rule_bt.png')
-sound_on_img = pygame.image.load('img/sound_on_bt.png')
-sound_off_img = pygame.image.load('img/sound_off_bt.png')
-home_img = pygame.image.load('img/home_bt.png')
-back_img = pygame.image.load('img/back_bt.png')
-game_rule_page = pygame.image.load('img/game_rule_pg.jpg')
-skin_img = pygame.image.load('img/skin_bt.png')
-playing_home_img = pygame.image.load('img/playing_home_bt.png')
-ako_img =pygame.image.load('img/ako1.png')
-winter_ako_img = pygame.image.load('img/winter_ako1.png')
-school_ako_img = pygame.image.load('img/school_ako1.png')
-graduation_ako_img = pygame.image.load('img/graduation_ako1.png')
-coin_img = pygame.image.load('img/coin.png')
-buy_img = pygame.image.load('img/buy_bt.png')
-select_img = pygame.image.load('img/select_bt.png')
-selected_img = pygame.image.load('img/selected_bt.png')
-
-#load sounds
-pygame.mixer.music.load('img/music.wav')
-pygame.mixer.music.play(-1, 0.0, 5000)
-coin_fx = pygame.mixer.Sound('img/coin.wav')
-coin_fx.set_volume(0.5)
-jump_fx = pygame.mixer.Sound('img/jump.wav')
-jump_fx.set_volume(0.5)
-game_over_fx = pygame.mixer.Sound('img/game_over.wav')
-game_over_fx.set_volume(0.5)
 
 
 def draw_text(text, font, text_col, x, y):
@@ -104,35 +66,6 @@ def reset_hard_level(hard_level):
 	coin_group.add(score_coin)
 	return hard_world 
 
-
-class Button():
-	def __init__(self, x, y, image):
-		self.image = image
-		self.rect = self.image.get_rect()
-		self.rect.x = x
-		self.rect.y = y
-		self.clicked = False
-
-	def draw(self):
-		action = False
-
-		#get mouse position
-		pos = pygame.mouse.get_pos()  # 마우스 위치
-
-		#check mouseover and clicked conditions
-		if self.rect.collidepoint(pos):
-			if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
-				action = True
-				self.clicked = True
-
-		if pygame.mouse.get_pressed()[0] == 0:
-			self.clicked = False
-
-
-		#draw button
-		screen.blit(self.image, self.rect)
-
-		return action
 
 
 class Player():
@@ -439,31 +372,6 @@ coin_group.add(score_coin)
 # 	pickle_in = open(f'hard_level{hard_level}_data', 'rb')
 # 	hard_world_data = pickle.load(pickle_in)
 # world_hard = World(hard_world_data)
-
- 
-#create buttons
-
-start_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.3), start_img)
-option_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2, option_img)
-exit_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 + (screen_height*0.15), exit_img)
-easy_mode_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.1), easy_mode_img)
-hard_mode_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 + (screen_height*0.1), hard_mode_img)
-game_rule_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 + (screen_height*0.1), game_rule_img)
-sound_on_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.1), sound_on_img)
-back_img_button = Button(screen_width // 2 - (screen_width*0.47), screen_height // 2 - (screen_height*0.47), back_img)
-sound_off_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.1), sound_off_img)
-restart_button = Button(screen_width // 2 - (screen_width*0.05), screen_height // 2 + (screen_height*0.1), restart_img)
-home_button = Button(screen_width // 2 - (screen_width*0.05), screen_height // 2 - (screen_height*0.1), home_img)
-skin_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.15), skin_img)
-playing_home_button = Button(screen_width // 2 + (screen_width*0.46) , screen_height // 2 - (screen_height*0.49), playing_home_img)
-buy_button1 = Button(screen_width// 2 - (screen_width*0.33), screen_height// 2+(screen_height*0.1), buy_img)
-buy_button2 = Button(screen_width// 2 - (screen_width*0.04), screen_height// 2+(screen_height*0.1), buy_img)
-buy_button3 = Button(screen_width // 2 + (screen_width*0.26), screen_height// 2+(screen_height*0.1), buy_img)
-selected_button = Button(screen_width// 2 - (screen_width*0.36), screen_height// 2+(screen_height*0.1), selected_img)
-select_button1 = Button(screen_width// 2 - (screen_width*0.15), screen_height// 2+(screen_height*0.1), select_img)
-select_button2 = Button(screen_width // 2 + (screen_width*0.08), screen_height// 2+(screen_height*0.1), select_img)
-select_button3 = Button(screen_width // 2 + (screen_width*0.28), screen_height// 2+(screen_height*0.1), select_img)
-
 
 
 run = True
