@@ -1,12 +1,23 @@
+#각종 그림과 효과음 및 bgm
+
 import pygame
 from pygame.locals import *
+from game_value import *
 from pygame import mixer
 import pickle
+
+
+screen = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE)
 
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
 mixer.init()
 pygame.init()
+
+
+def draw_text(text, font, text_col, x, y):
+	img = font.render(text, True, text_col)  
+	screen.blit(img, (x, y))  # screen.blit(이미지, 대상) -> 이미지 복사
 
 
 #load images

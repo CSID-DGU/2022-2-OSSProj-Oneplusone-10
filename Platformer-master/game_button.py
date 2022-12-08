@@ -1,3 +1,4 @@
+#각종 버튼들
 import pygame
 from pygame.locals import *
 from game_value import *
