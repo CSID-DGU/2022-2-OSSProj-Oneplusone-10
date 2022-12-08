@@ -42,6 +42,7 @@ back_img = pygame.image.load('img/back_bt.png')
 game_rule_page = pygame.image.load('img/game_rule_pg.jpg')
 skin_img = pygame.image.load('img/skin_bt.png')
 playing_home_img = pygame.image.load('img/playing_home_bt.png')
+ako_img =pygame.image.load('img/ako1.png')
 winter_ako_img = pygame.image.load('img/winter_ako1.png')
 school_ako_img = pygame.image.load('img/school_ako1.png')
 graduation_ako_img = pygame.image.load('img/graduation_ako1.png')
@@ -458,9 +459,10 @@ playing_home_button = Button(screen_width // 2 + (screen_width*0.46) , screen_he
 buy_button1 = Button(screen_width// 2 - (screen_width*0.33), screen_height// 2+(screen_height*0.1), buy_img)
 buy_button2 = Button(screen_width// 2 - (screen_width*0.04), screen_height// 2+(screen_height*0.1), buy_img)
 buy_button3 = Button(screen_width // 2 + (screen_width*0.26), screen_height// 2+(screen_height*0.1), buy_img)
-select_button1 = Button(screen_width// 2 - (screen_width*0.33), screen_height// 2+(screen_height*0.1), select_img)
-select_button2 = Button(screen_width// 2 - (screen_width*0.04), screen_height// 2+(screen_height*0.1), select_img)
-select_button3 = Button(screen_width // 2 + (screen_width*0.26), screen_height// 2+(screen_height*0.1), select_img)
+selected_button = Button(screen_width// 2 - (screen_width*0.36), screen_height// 2+(screen_height*0.1), selected_img)
+select_button1 = Button(screen_width// 2 - (screen_width*0.15), screen_height// 2+(screen_height*0.1), select_img)
+select_button2 = Button(screen_width // 2 + (screen_width*0.08), screen_height// 2+(screen_height*0.1), select_img)
+select_button3 = Button(screen_width // 2 + (screen_width*0.28), screen_height// 2+(screen_height*0.1), select_img)
 
 
 
@@ -509,22 +511,28 @@ while run:
 
 		black = (0,0,0) #검정
 
+		#기본 아코
+		ako_img = pygame.transform.scale(ako_img, (200,200))
+		screen.blit(ako_img, (screen_width // 2 - (screen_width*0.42),screen_height // 2 - (screen_height*0.15)))
+		if selected_button.draw():
+			player.ako = "ako" # 겨울아코로 변경
+
 		#겨울 아코
-		winter_ako_img = pygame.transform.scale(winter_ako_img, (200,200))
-		screen.blit(winter_ako_img, (screen_width // 2 - (screen_width*0.4),screen_height // 2 - (screen_height*0.15)))
-		if buy_button1.draw():
+		winter_ako_img = pygame.transform.scale(winter_ako_img, (220,220))
+		screen.blit(winter_ako_img, (screen_width // 2 - (screen_width*0.23),screen_height // 2 - (screen_height*0.165)))
+		if select_button1.draw():
 			player.ako = "winter_ako" # 겨울아코로 변경
 			
 		#과잠 아코
 		school_ako_img = pygame.transform.scale(school_ako_img, (200,200))
-		screen.blit(school_ako_img, ((screen_width // 2 - (screen_width*0.1), screen_height // 2 - (screen_height*0.15))))
-		if buy_button2.draw():
+		screen.blit(school_ako_img, ((screen_width // 2 + (screen_width*0.01), screen_height // 2 - (screen_height*0.15))))
+		if select_button2.draw():
 			player.ako = "school_ako" # 스쿨아코로 변경
 
 		#졸업 아코
 		graduation_ako_img = pygame.transform.scale(graduation_ako_img, (200,200))
-		screen.blit(graduation_ako_img, (screen_width // 2 + (screen_width*0.2),screen_height // 2 - (screen_height*0.15)))
-		if buy_button3.draw():
+		screen.blit(graduation_ako_img, (screen_width // 2 + (screen_width*0.22),screen_height // 2 - (screen_height*0.15)))
+		if select_button3.draw():
 			player.ako = "graduation_ako" # 졸업아코로 변경
   
    
