@@ -518,20 +518,7 @@ while run:
 			player.ako = "ako" # 겨울아코로 변경
 
 		#겨울 아코
-		winter_ako_img = pygame.transform.scale(winter_ako_img, (220,220))
-		screen.blit(winter_ako_img, (screen_width // 2 - (screen_width*0.23),screen_height // 2 - (screen_height*0.165)))
-		if select_button1.draw():
-			player.ako = "winter_ako" # 겨울아코로 변경
-			
-		#과잠 아코
-		school_ako_img = pygame.transform.scale(school_ako_img, (200,200))
-		screen.blit(school_ako_img, ((screen_width // 2 + (screen_width*0.01), screen_height // 2 - (screen_height*0.15))))
-		if select_button2.draw():
-			player.ako = "school_ako" # 스쿨아코로 변경
 
-		#졸업 아코
-		graduation_ako_img = pygame.transform.scale(graduation_ako_img, (200,200))
-		screen.blit(graduation_ako_img, (screen_width // 2 + (screen_width*0.22),screen_height // 2 - (screen_height*0.15)))
 		if select_button3.draw():
 			player.ako = "graduation_ako" # 졸업아코로 변경
   
