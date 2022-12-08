@@ -11,7 +11,7 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-screen = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE)
+screen = pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREEN)
 pygame.display.set_caption('Platformer')
 
 
@@ -29,7 +29,6 @@ blue = (0, 0, 255)
 background_img = pygame.image.load('img/background.png')
 restart_img = pygame.image.load('img/restart_bt.png')
 start_img = pygame.image.load('img/start_bt.png')
-skin2_img = pygame.image.load('img/skin_bt_ver2.png')
 option_img = pygame.image.load('img/option_bt.png')
 score_img = pygame.image.load('img/score_bt.png')
 exit_img = pygame.image.load('img/exit_bt.png')
@@ -42,7 +41,6 @@ home_img = pygame.image.load('img/home_bt.png')
 back_img = pygame.image.load('img/back_bt.png')
 game_rule_page = pygame.image.load('img/game_rule_pg.jpg')
 skin_img = pygame.image.load('img/skin_bt.png')
-my_skin_img = pygame.image.load('img/my_skin_bt.png')
 playing_home_img = pygame.image.load('img/playing_home_bt.png')
 winter_ako_img = pygame.image.load('img/winter_ako1.png')
 school_ako_img = pygame.image.load('img/school_ako1.png')
@@ -443,7 +441,6 @@ coin_group.add(score_coin)
 #create buttons
 
 start_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.3), start_img)
-skin2_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.15), skin2_img)
 option_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2, option_img)
 exit_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 + (screen_height*0.15), exit_img)
 easy_mode_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.1), easy_mode_img)
@@ -455,7 +452,6 @@ sound_off_button = Button(screen_width // 2 - (screen_width*0.16), screen_height
 restart_button = Button(screen_width // 2 - (screen_width*0.05), screen_height // 2 + (screen_height*0.1), restart_img)
 home_button = Button(screen_width // 2 - (screen_width*0.05), screen_height // 2 - (screen_height*0.1), home_img)
 skin_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.1), skin_img)
-my_skin_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 + (screen_height*0.1), my_skin_img)
 playing_home_button = Button(screen_width // 2 + (screen_width*0.46) , screen_height // 2 - (screen_height*0.49), playing_home_img)
 buy_button1 = Button(screen_width// 2 - (screen_width*0.33), screen_height// 2+(screen_height*0.1), buy_img)
 buy_button2 = Button(screen_width// 2 - (screen_width*0.04), screen_height// 2+(screen_height*0.1), buy_img)
@@ -472,7 +468,7 @@ while run:
 			run = False     
 		if start_button.draw(): # start 버튼 누르면 
 			main_menu = "main_screen" #2
-		if skin2_button.draw(): # store 버튼 누르면 
+		if skin_button.draw(): # store 버튼 누르면 
 			main_menu = "skin" #3
 		if option_button.draw(): # option 버튼 누르면 
 			main_menu = "option" #4
