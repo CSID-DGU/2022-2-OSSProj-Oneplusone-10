@@ -5,7 +5,7 @@ from pygame.locals import *
 import pickle
 from os import path
 
-from game_value import * #너비와 높이 지정을 위해 game_value 모듈 import
+from game_value import *
 from game_image_sound import * #버튼 클릭 시 효과음을 위해 game_image_sound 모듈 import
 
 screen = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE)

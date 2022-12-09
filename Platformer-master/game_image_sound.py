@@ -49,6 +49,10 @@ coin_img = pygame.image.load('img/coin.png') #코인 이미지
 select_img = pygame.image.load('img/select_bt.png') #스킨 선택 이미지
 selected_img = pygame.image.load('img/selected_bt.png')
 
+#이제 안쓰는 버튼
+#buy_img = pygame.image.load('img/buy_bt.png')
+#score_img = pygame.image.load('img/score_bt.png')
+
 
 #소리 load하기
 pygame.mixer.music.load('img/music.wav')
