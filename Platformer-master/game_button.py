@@ -1,13 +1,16 @@
 #각종 버튼들
+
 import pygame
 from pygame.locals import *
 from game_value import *
 import pickle
 from os import path
-from game_image_sound import *
+
+from game_image_sound import * #버튼 클릭 시 효과음을 위해 game_image_sound 모듈 import
 
 screen = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE)
 
+#버튼 클래스
 class Button():
 	def __init__(self, x, y, image):
 		self.image = image
@@ -19,10 +22,10 @@ class Button():
 	def draw(self):
 		action = False
 
-		#get mouse position
-		pos = pygame.mouse.get_pos()  # 마우스 위치
+		#마우스 위치 지정
+		pos = pygame.mouse.get_pos()  
 
-		#check mouseover and clicked conditions
+		#마우스 위치 확인후 클릭할 때 조건마다 해야하는 액션
 		if self.rect.collidepoint(pos):
 			if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
 				action = True
@@ -31,14 +34,13 @@ class Button():
 		if pygame.mouse.get_pressed()[0] == 0:
 			self.clicked = False
 
-
-		#draw button
+		#버튼 출력
 		screen.blit(self.image, self.rect)
 
 		return action
 
 
-#create buttons
+#버튼 변환및 위치 지정(이때 위치는 시작 지점의 좌표)
 start_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 - (screen_height*0.3), start_img)
 option_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2, option_img)
 exit_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 + (screen_height*0.15), exit_img)

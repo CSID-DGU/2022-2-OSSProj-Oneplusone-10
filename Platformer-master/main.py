@@ -31,8 +31,8 @@ def reset_level(level):
     exit_group.empty()
 
     #load in level data and create world
-    if path.exists(f'level{level}_data'):  # 파일 또는 폴더 존재 여부 확인
-        pickle_in = open(f'level{level}_data', 'rb')
+    if path.exists(f'level_data/level{level}_data'):  # 파일 또는 폴더 존재 여부 확인
+        pickle_in = open(f'level_data/level{level}_data', 'rb')
         world_data = pickle.load(pickle_in)
     world = World(world_data)
     #create dummy coin for showing the score
@@ -49,8 +49,8 @@ def reset_hard_level(hard_level):
     exit_group.empty()
 
     #load in level data and create world
-    if path.exists(f'hard_level{hard_level}_data'):  # 파일 또는 폴더 존재 여부 확인
-        pickle_in = open(f'hard_level{hard_level}_data', 'rb')
+    if path.exists(f'level_data/hard_level{hard_level}_data'):  # 파일 또는 폴더 존재 여부 확인
+        pickle_in = open(f'level_data/hard_level{hard_level}_data', 'rb')
         hard_world_data = pickle.load(pickle_in)
     hard_world = World(hard_world_data)
     #create dummy coin for showing the score
