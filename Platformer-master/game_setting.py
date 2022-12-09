@@ -5,9 +5,8 @@ from pygame.locals import *
 from game_value import *
 import pickle
 from os import path
-
-from game_image_sound import * #게임 실행시 필요한 그림을 위해 game_image_sound 모듈 import
-from game_role import * #게임 실행 시 캐릭터들 출력을 위해 game_role 모듈 import
+from game_image_sound import *
+from game_rule import *
 
 screen = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE)
 
