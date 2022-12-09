@@ -48,6 +48,7 @@ graduation_ako_img = pygame.image.load('img/graduation_ako1.png')
 coin_img = pygame.image.load('img/coin.png') #코인 이미지
 select_img = pygame.image.load('img/select_bt.png') #스킨 선택 이미지
 selected_img = pygame.image.load('img/selected_bt.png')
+bulb_img = pygame.image.load('img/bulb.png')
 
 #이제 안쓰는 버튼
 #buy_img = pygame.image.load('img/buy_bt.png')
