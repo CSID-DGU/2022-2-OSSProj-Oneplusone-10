@@ -6,7 +6,7 @@ from game_value import *
 import pickle
 from os import path
 from game_image_sound import *
-from game_role import *
+from game_rule import *
 
 screen = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE)
 

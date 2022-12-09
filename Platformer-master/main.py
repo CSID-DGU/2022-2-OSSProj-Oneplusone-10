@@ -7,7 +7,7 @@ from os import path
 
 from game_button import *
 from game_setting import *
-from game_role import *
+from game_rule import *
 
 clock = pygame.time.Clock()
 
@@ -225,6 +225,8 @@ coin_group.add(score_coin)
 # 	hard_world_data = pickle.load(pickle_in)
 # world_hard = World(hard_world_data)
 
+easy_record = 1000    # 이지모드 기록 달성을 위한 변수
+hard_record = 1000    # 하드모드 기록 달성을 위한 변수
 
 run = True
 while run:
@@ -301,7 +303,7 @@ while run:
         if sound_off_button.draw(): #sound on 버튼 누르면 음악 임시멈춤
             main_menu="option_soundoff" #4.3
         if game_rule_button.draw() :
-            main_menu = "game_role" #4.7
+            main_menu = "game_rule" #4.7
 
     elif main_menu == "option_soundoff": #4.3 옵션화면_소리 껐을때
         pygame.mixer.music.pause()
@@ -310,7 +312,7 @@ while run:
         if sound_on_button.draw(): #sound off 버튼 누르면 음악 다시 시작
             main_menu= "option" #4
         if game_rule_button.draw() :
-            main_menu = "game_role" #4.7
+            main_menu = "game_rule" #4.7
         
 
     elif main_menu == "game_rule": #게임 룰 페이지 4.7
@@ -321,7 +323,7 @@ while run:
                 main_menu = "option" #4
             elif not pygame.mixer.music. get_busy ( ) :
                 main_menu = 4.3
-
+    
     elif main_menu == 'easy' and not flag:
         flag = True
         world = reset_level(level)
@@ -371,7 +373,7 @@ while run:
                 world = reset_level(level)
                 game_over = 0
                 # score = 0   # 획득한 코인 리셋 안되게 이코드 주석
-
+                
         #if player has completed the level
         if game_over == 1:
             #reset game and go to next level
@@ -382,12 +384,20 @@ while run:
                 world = reset_level(level)
                 game_over = 0
             else:
-                draw_text('축하합니다 ! :)', font, blue, screen_width // 2 -150, screen_height // 2)
-                draw_text('(이전 기록:n / 현재 기록: m)', font, white, screen_width // 2 -300, screen_height // 2+ (screen_height*0.05))
-                #draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2), screen_height // 2)
-                final_timer = game_font.render('게임 통과 소요 시간 : ' + str(int(elapsed_time)), True, (255,255,255)) # 타이머 위치 지정
-                screen.blit(final_timer, (350,10)) # 타이머 위치 지정
-    
+                if elapsed_time <= easy_record:
+                    easy_record = elapsed_time
+                    draw_text('축하합니다 ! :)', font, blue, screen_width // 2 -150, screen_height // 2)
+                    draw_text('현재 최고 기록 : ' + str(easy_record), font, white, screen_width // 2 -220, screen_height // 2+ (screen_height*0.05))
+                    #draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2), screen_height // 2)
+                    final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, (255,255,255)) # 타이머 위치 지정
+                    screen.blit(final_timer, (350,10)) # 타이머 위치 지정
+                    
+                else:
+                    draw_text('최고 기록 갱신 실패', font, blue, screen_width // 2 -150, screen_height // 2)
+                    draw_text('현재 최고 기록 : ' + str(easy_record), font, white, screen_width // 2 -220, screen_height // 2+ (screen_height*0.05))
+                    final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, (255,255,255)) # 타이머 위치 지정
+                    screen.blit(final_timer, (350,10)) # 타이머 위치 지정
+                    
                 if home_button.draw():
                     main_menu = True
                     level = 1
@@ -464,11 +474,20 @@ while run:
                 world = reset_hard_level(hard_level)
                 game_over = 0
             else:
-                draw_text('축하합니다 ! :)', font, blue, screen_width // 2 -150, screen_height // 2)
-                draw_text('(이전 기록:n / 현재 기록: m)', font, white, screen_width // 2 -300, screen_height // 2+ (screen_height*0.05))
-                #draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2), screen_height // 2)
-                final_timer = game_font.render('게임 통과 소요 시간 : ' + str(int(elapsed_time)), True, (255,255,255)) # 타이머 위치 지정
-                screen.blit(final_timer, (350,10)) # 타이머 위치 지정
+                if elapsed_time <= hard_record:
+                    hard_record = elapsed_time
+                    draw_text('축하합니다 ! :)', font, blue, screen_width // 2 -150, screen_height // 2)
+                    draw_text('현재 최고 기록 : ' + str(hard_record), font, white, screen_width // 2 -200, screen_height // 2+ (screen_height*0.05))
+                    #draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2), screen_height // 2)
+                    final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, (255,255,255)) # 타이머 위치 지정
+                    screen.blit(final_timer, (350,10)) # 타이머 위치 지정
+                    
+                else:
+                    draw_text('최고 기록 갱신 실패', font, blue, screen_width // 2 -150, screen_height // 2)
+                    draw_text('현재 최고 기록 : ' + str(hard_record), font, white, screen_width // 2 -200, screen_height // 2+ (screen_height*0.05))
+                    final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, (255,255,255)) # 타이머 위치 지정
+                    screen.blit(final_timer, (350,10)) # 타이머 위치 지정
+                    
                 if home_button.draw():
                     main_menu = True
                     hard_level = 1
