@@ -4,8 +4,8 @@ import pygame
 from pygame.locals import *
 import pickle
 
-from game_value import * #글씨에 적용될 스크린 너비와 높이 지정을 위한 game value 모듈 import
-from pygame import mixer #소리 사용을 위한 mixer모듈 import
+from game_value import * #글씨에 적용될 screen 너비와 높이 지정을 위한 game_value 모듈 import
+from pygame import mixer #소리 사용을 위해 pygame에 내장되어있는 mixer모듈 import
 
 
 screen = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE)
