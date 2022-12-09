@@ -1,12 +1,13 @@
-#Platform, Window, Exit, Coin
+#게임 셋팅에 필요한 요소 _ Platform, Window, Exit, Coin
 
 import pygame
 from pygame.locals import *
 from game_value import *
 import pickle
 from os import path
-from game_image_sound import *
-from game_role import *
+
+from game_image_sound import * #게임 실행시 필요한 그림을 위해 game_image_sound 모듈 import
+from game_role import * #게임 실행 시 캐릭터들 출력을 위해 game_role 모듈 import
 
 screen = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE)
 
@@ -18,17 +19,19 @@ lava_group = pygame.sprite.Group()
 coin_group = pygame.sprite.Group()
 exit_group = pygame.sprite.Group()
 
+#게임 실행 클래스
 class World():
 	def __init__(self, data):
 		self.tile_list = []
 
-		#load images
+		#이미지 load하기
 		dirt_img = pygame.image.load('img/dirt.png')
 		grass_img = pygame.image.load('img/grass.png')
 
 		row_count = 0
 		for row in data:
 			col_count = 0
+			#클릭 횟수에 따라 타일의 이미지 및 모드 변환
 			for tile in row:
 				if tile == 1:
 					img = pygame.transform.scale(dirt_img, (tile_size, tile_size))
@@ -70,6 +73,7 @@ class World():
 			screen.blit(tile[0], tile[1]) 
 
 
+#움직이는 바 클래스
 class Platform(pygame.sprite.Sprite):
 	def __init__(self, x, y, move_x, move_y):
 		pygame.sprite.Sprite.__init__(self)
@@ -92,6 +96,7 @@ class Platform(pygame.sprite.Sprite):
 			self.move_counter *= -1  
 
 
+#탈출 클래스
 class Exit(pygame.sprite.Sprite):
 	def __init__(self, x, y):
 		pygame.sprite.Sprite.__init__(self)
@@ -102,6 +107,7 @@ class Exit(pygame.sprite.Sprite):
 		self.rect.y = y
 
 
+#코인 클래스
 class Coin(pygame.sprite.Sprite):
 	def __init__(self, x, y):
 		pygame.sprite.Sprite.__init__(self)
