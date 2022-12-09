@@ -3,24 +3,26 @@
 
 import pygame
 from pygame.locals import *
-from game_value import *
 import pickle
 from os import path
-from game_image_sound import *
-from game_setting import *
+
+from game_value import * #role출력에 사용될 screen 너비와 높이 지정을 위한 game_value 모듈 import
+from game_image_sound import * #role 요소의 그림 출력을 위한 game_image_sound 모듈 import
+from game_setting import * #게임 실행화면 위에 출력해야하기 때문에 game_settine 모듈 import
 
 screen = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE)
 
 
-#define font
+#기본 폰트 지정
 font = pygame.font.Font('Puradak Gentle Gothic OTF.otf', 50)
 font_score = pygame.font.Font('Puradak Gentle Gothic OTF.otf', 20)
 
-#define colours
+#기본 색상 지정
 white = (255, 255, 255)
 blue = (0, 0, 255)
 
 
+#용암 클래스
 class Lava(pygame.sprite.Sprite):
 	def __init__(self, x, y):
 		pygame.sprite.Sprite.__init__(self)
@@ -31,6 +33,7 @@ class Lava(pygame.sprite.Sprite):
 		self.rect.y = y
 
 
+#슬라임(장애물)클래스
 class Enemy(pygame.sprite.Sprite):
 	def __init__(self, x, y):
 		pygame.sprite.Sprite.__init__(self)
