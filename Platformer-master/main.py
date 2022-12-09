@@ -23,7 +23,7 @@ def draw_text(text, font, text_col, x, y):
 
 #function to reset level
 def reset_level(level):
-    player.reset(100, screen_height - 130)
+    player.reset(100, start_height)
     blob_group.empty()
     platform_group.empty()
     coin_group.empty()
@@ -36,12 +36,12 @@ def reset_level(level):
         world_data = pickle.load(pickle_in)
     world = World(world_data)
     #create dummy coin for showing the score
-    score_coin = Coin(tile_size // 2, tile_size // 2)
+    score_coin = Coin(coin_tile_size, coin_tile_size)
     coin_group.add(score_coin)
     return world 
 
 def reset_hard_level(hard_level):
-    player.reset(100, screen_height - 130)
+    player.reset(100, start_height)
     blob_group.empty()
     platform_group.empty()
     coin_group.empty()
@@ -54,7 +54,7 @@ def reset_hard_level(hard_level):
         hard_world_data = pickle.load(pickle_in)
     hard_world = World(hard_world_data)
     #create dummy coin for showing the score
-    score_coin = Coin(tile_size // 2, tile_size // 2)
+    score_coin = Coin(coin_tile_size, coin_tile_size)
     coin_group.add(score_coin)
     return hard_world 
 
@@ -81,11 +81,11 @@ class Player():
                 self.jumped = False
             if key[pygame.K_LEFT]:
                 dx -= 5
-                self.counter += 2 #하드모드의 경우 +=2, 이지모드의 경우 +=1
+                self.counter += 1 
                 self.direction = -1
             if key[pygame.K_RIGHT]:
                 dx += 5
-                self.counter += 2 #하드모드의 경우 +=2, 이지모드의 경우 +=1
+                self.counter += 1
                 self.direction = 1
             if key[pygame.K_LEFT] == False and key[pygame.K_RIGHT] == False:
                 self.counter = 0
@@ -192,7 +192,7 @@ class Player():
         self.counter = 0
         for num in range(1, 5):
             img_right = pygame.image.load(f'img/{self.ako}{num}.png')
-            img_right = pygame.transform.scale(img_right, (40, 80))
+            img_right = pygame.transform.scale(img_right, inplay_ako_size)
             img_left = pygame.transform.flip(img_right, True, False)
             self.images_right.append(img_right)
             self.images_left.append(img_left)
@@ -207,10 +207,10 @@ class Player():
         self.direction = 0
         self.in_air = True
 
-player = Player(100, screen_height - 130)
+player = Player(100, start_height)
 
 #create dummy coin for showing the score
-score_coin = Coin(tile_size // 2, tile_size // 2)
+score_coin = Coin(coin_tile_size, coin_tile_size)
 coin_group.add(score_coin)
 
 # 맵 로드해주는 코드를 이지모드와 하드모드로 구분하여 진행하므로 각각의 게임 모드안에 reset_level 함수를 호출하여 맵을 로드시킴 
@@ -225,8 +225,7 @@ coin_group.add(score_coin)
 # 	hard_world_data = pickle.load(pickle_in)
 # world_hard = World(hard_world_data)
 
-easy_record = 1000    # 이지모드 기록 달성을 위한 변수
-hard_record = 1000    # 하드모드 기록 달성을 위한 변수
+
 
 run = True
 while run:
@@ -247,23 +246,23 @@ while run:
    
     
     elif main_menu == "main_screen":  #2 start 버튼 눌렀을때 페이지 
-        screen.blit(background_img, (0,0))
+        screen.blit(background_img, background_coordinate)
 
         if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 메인 메뉴 페이지로
             main_menu = True
         if easy_mode_button.draw(): # easy mode 버튼 눌렀을때 게임 실행
             main_menu = "easy"
             start_ticks = pygame.time.get_ticks() #시작 시간 설정
-            total_time = 600 #초안 그래도 10분, 600초로 설정(임시)
+            total_time = easy_timer #초안 그래도 10분, 600초로 설정(임시)
             flag = False
         if hard_mode_button.draw(): 
             main_menu = "hard"
             start_ticks = pygame.time.get_ticks() #시작 시간 설정
-            total_time = 600 #초안 그래도 10분, 600초로 설정(임시)
+            total_time = hard_timer #초안 그래도 10분, 600초로 설정(임시)
             flag = False
    
     elif main_menu == "skin":  #3 start 버튼 눌렀을때 페이지 
-        screen.blit(background_img, (0,0))
+        screen.blit(background_img, background_coordinate)
 
         if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 메인 메뉴 페이지로
             main_menu = True 
@@ -271,32 +270,32 @@ while run:
         black = (0,0,0) #검정
 
         #기본 아코
-        ako_img = pygame.transform.scale(ako_img, (200,200))
+        ako_img = pygame.transform.scale(ako_img, skin_ako_size)
         screen.blit(ako_img, (screen_width // 2 - (screen_width*0.42),screen_height // 2 - (screen_height*0.15)))
         if selected_button.draw():
             player.ako = "ako" # 겨울아코로 변경
 
         #겨울 아코
-        winter_ako_img = pygame.transform.scale(winter_ako_img, (220,220))
+        winter_ako_img = pygame.transform.scale(winter_ako_img, skin_winter_ako_size)
         screen.blit(winter_ako_img, (screen_width // 2 - (screen_width*0.23),screen_height // 2 - (screen_height*0.165)))
         if select_button1.draw():
             player.ako = "winter_ako" # 겨울아코로 변경
             
         #과잠 아코
-        school_ako_img = pygame.transform.scale(school_ako_img, (200,200))
+        school_ako_img = pygame.transform.scale(school_ako_img, skin_school_ako_size)
         screen.blit(school_ako_img, ((screen_width // 2 + (screen_width*0.01), screen_height // 2 - (screen_height*0.15))))
         if select_button2.draw():
             player.ako = "school_ako" # 스쿨아코로 변경
 
         #졸업 아코
-        graduation_ako_img = pygame.transform.scale(graduation_ako_img, (200,200))
+        graduation_ako_img = pygame.transform.scale(graduation_ako_img, skin_graduation_ako_size)
         screen.blit(graduation_ako_img, (screen_width // 2 + (screen_width*0.22),screen_height // 2 - (screen_height*0.15)))
         if select_button3.draw():
             player.ako = "graduation_ako" # 졸업아코로 변경
   
 
     elif main_menu == "option":  # 4 option 버튼 눌렀을때 페이지(디폴트 : 소리켜져있음)
-        screen.blit(background_img, (0,0))
+        screen.blit(background_img, background_coordinate)
         pygame.mixer.music.unpause() 
         if back_img_button.draw():
             main_menu = True
@@ -316,8 +315,8 @@ while run:
         
 
     elif main_menu == "game_rule": #게임 룰 페이지 4.7
-        screen.blit(background_img, (0,0))
-        screen.blit(game_rule_page, (0,0))
+        screen.blit(background_img, background_coordinate)
+        screen.blit(game_rule_page, background_coordinate)
         if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 옵션 페이지로
             if pygame.mixer.music. get_busy ( ) :
                 main_menu = "option" #4
@@ -339,11 +338,11 @@ while run:
         if game_over == 0:
             
             elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000 # 타이머 시간을 1000으로 나누어 초단위로 표시 (default: ms 단위)
-            game_font = pygame.font.Font('Puradak Gentle Gothic OTF.otf', 30)
+            game_font = pygame.font.Font('Puradak Gentle Gothic OTF.otf', game_font_size)
 
-            timer = game_font.render(str(int(total_time - elapsed_time)), True, (255,255,255)) # 타이머 위치 지정
-            screen.blit(timer, (900,10)) # 타이머 위치 지정
-            if total_time - elapsed_time <= 0: 
+            timer = game_font.render(str(int(total_time - elapsed_time)), True, timer_text_color) # 색상 시정
+            screen.blit(timer, timer_coordinate) # 타이머 위치 지정
+            if total_time - elapsed_time <= game_over_time: 
                 restart_button = Button(screen_width // 2 - 160, screen_height // 2 , restart_img)
                 if restart_button.draw():
                     main_menu = "main_screen"
@@ -357,7 +356,7 @@ while run:
             if pygame.sprite.spritecollide(player, coin_group, True):
                 score += 1
                 coin_fx.play()  # 코인 먹을때 사운드 실행
-            draw_text('X ' + str(score), font_score, white, tile_size - 10, 10)  # 코인 스코어 왼쪽 상단에 가시화
+            draw_text('X ' + str(score), font_score, white, coin_score_text_x, coin_score_text_y)  # 코인 스코어 왼쪽 상단에 가시화
         
         blob_group.draw(screen)
         platform_group.draw(screen)
@@ -389,13 +388,13 @@ while run:
                     draw_text('축하합니다 ! :)', font, blue, screen_width // 2 -150, screen_height // 2)
                     draw_text('현재 최고 기록 : ' + str(easy_record), font, white, screen_width // 2 -220, screen_height // 2+ (screen_height*0.05))
                     #draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2), screen_height // 2)
-                    final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, (255,255,255)) # 타이머 위치 지정
+                    final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, timer_text_color) # 타이머 위치 지정
                     screen.blit(final_timer, (350,10)) # 타이머 위치 지정
                     
                 else:
                     draw_text('최고 기록 갱신 실패', font, blue, screen_width // 2 -150, screen_height // 2)
                     draw_text('현재 최고 기록 : ' + str(easy_record), font, white, screen_width // 2 -220, screen_height // 2+ (screen_height*0.05))
-                    final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, (255,255,255)) # 타이머 위치 지정
+                    final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, timer_text_color) # 타이머 위치 지정
                     screen.blit(final_timer, (350,10)) # 타이머 위치 지정
                     
                 if home_button.draw():
@@ -430,11 +429,11 @@ while run:
    
         if game_over == 0:
             elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000 # 타이머 시간을 1000으로 나누어 초단위로 표시 (default: ms 단위)
-            game_font = pygame.font.Font('Puradak Gentle Gothic OTF.otf', 30)
-            timer = game_font.render(str(int(total_time - elapsed_time)), True, (255,255,255)) # 타이머 위치 지정
-            screen.blit(timer, (900,10)) # 타이머 위치 지정
+            game_font = pygame.font.Font('Puradak Gentle Gothic OTF.otf', game_font_size)
+            timer = game_font.render(str(int(total_time - elapsed_time)), True, timer_text_color) # 타이머 위치 지정
+            screen.blit(timer, timer_coordinate) # 타이머 위치 지정
             
-            if total_time - elapsed_time <= 0: 
+            if total_time - elapsed_time <= game_over_time: 
                 restart_button = Button(screen_width // 2 - 160, screen_height // 2 , restart_img)
                 if restart_button.draw():
                     main_menu = "main_screen"
@@ -447,7 +446,7 @@ while run:
             if pygame.sprite.spritecollide(player, coin_group, True):
                 score += 1
                 coin_fx.play()
-            draw_text('X ' + str(score), font_score, white, tile_size - 10, 10)
+            draw_text('X ' + str(score), font_score, white, coin_score_text_x, coin_score_text_y)
         
         blob_group.draw(screen)
         platform_group.draw(screen)
@@ -479,13 +478,13 @@ while run:
                     draw_text('축하합니다 ! :)', font, blue, screen_width // 2 -150, screen_height // 2)
                     draw_text('현재 최고 기록 : ' + str(hard_record), font, white, screen_width // 2 -200, screen_height // 2+ (screen_height*0.05))
                     #draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2), screen_height // 2)
-                    final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, (255,255,255)) # 타이머 위치 지정
+                    final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, timer_text_color) # 타이머 위치 지정
                     screen.blit(final_timer, (350,10)) # 타이머 위치 지정
                     
                 else:
                     draw_text('최고 기록 갱신 실패', font, blue, screen_width // 2 -150, screen_height // 2)
                     draw_text('현재 최고 기록 : ' + str(hard_record), font, white, screen_width // 2 -200, screen_height // 2+ (screen_height*0.05))
-                    final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, (255,255,255)) # 타이머 위치 지정
+                    final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, timer_text_color) # 타이머 위치 지정
                     screen.blit(final_timer, (350,10)) # 타이머 위치 지정
                     
                 if home_button.draw():
