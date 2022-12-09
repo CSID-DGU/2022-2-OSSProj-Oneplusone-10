@@ -115,5 +115,3 @@ class Coin(pygame.sprite.Sprite):
 		self.image = pygame.transform.scale(img, (tile_size // 2, tile_size // 2))
 		self.rect = self.image.get_rect()
 		self.rect.center = (x, y)
-
-
