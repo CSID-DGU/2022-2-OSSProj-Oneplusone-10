@@ -174,7 +174,7 @@ class Player():
         
         elif game_over == -1:   
             self.image = self.dead_image
-            draw_text('GAME OVER!', font, blue, (screen_width // 2) - 200, screen_height // 2)
+            draw_text('GAME OVER!', font, blue, (screen_width // 2) - (screen_width*0.2), screen_height // 2)
             if self.rect.y > 200:   # 죽으면 유령으로 바뀌고 설정한 범위만큼 위로 올라감
                 self.rect.y -= 5   
             
@@ -343,7 +343,7 @@ while run:
             timer = game_font.render(str(int(total_time - elapsed_time)), True, timer_text_color) # 색상 시정
             screen.blit(timer, timer_coordinate) # 타이머 위치 지정
             if total_time - elapsed_time <= game_over_time: 
-                restart_button = Button(screen_width // 2 - 160, screen_height // 2 , restart_img)
+                restart_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 , restart_img)
                 if restart_button.draw():
                     main_menu = "main_screen"
                 if exit_button.draw():
@@ -385,15 +385,15 @@ while run:
             else:
                 if elapsed_time <= easy_record:
                     easy_record = elapsed_time
-                    draw_text('축하합니다 ! :)', font, blue, screen_width // 2 -150, screen_height // 2)
-                    draw_text('현재 최고 기록 : ' + str(easy_record), font, white, screen_width // 2 -220, screen_height // 2+ (screen_height*0.05))
+                    draw_text('축하합니다 ! :)', font, blue, screen_width // 2 - (screen_width*0.15), screen_height // 2)
+                    draw_text('현재 최고 기록 : ' + str(easy_record), font, white, screen_width // 2 - (screen_width*0.22), screen_height // 2+ (screen_height*0.05))
                     #draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2), screen_height // 2)
                     final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, timer_text_color) # 타이머 위치 지정
                     screen.blit(final_timer, (350,10)) # 타이머 위치 지정
                     
                 else:
-                    draw_text('최고 기록 갱신 실패', font, blue, screen_width // 2 -150, screen_height // 2)
-                    draw_text('현재 최고 기록 : ' + str(easy_record), font, white, screen_width // 2 -220, screen_height // 2+ (screen_height*0.05))
+                    draw_text('최고 기록 갱신 실패', font, blue, screen_width // 2 - (screen_width*0.15), screen_height // 2)
+                    draw_text('현재 최고 기록 : ' + str(easy_record), font, white, screen_width // 2 - (screen_width*0.22), screen_height // 2+ (screen_height*0.05))
                     final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, timer_text_color) # 타이머 위치 지정
                     screen.blit(final_timer, (350,10)) # 타이머 위치 지정
                     
@@ -434,7 +434,7 @@ while run:
             screen.blit(timer, timer_coordinate) # 타이머 위치 지정
             
             if total_time - elapsed_time <= game_over_time: 
-                restart_button = Button(screen_width // 2 - 160, screen_height // 2 , restart_img)
+                restart_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 , restart_img)
                 if restart_button.draw():
                     main_menu = "main_screen"
                 if exit_button.draw():
@@ -475,17 +475,17 @@ while run:
             else:
                 if elapsed_time <= hard_record:
                     hard_record = elapsed_time
-                    draw_text('축하합니다 ! :)', font, blue, screen_width // 2 -150, screen_height // 2)
-                    draw_text('현재 최고 기록 : ' + str(hard_record), font, white, screen_width // 2 -200, screen_height // 2+ (screen_height*0.05))
+                    draw_text('축하합니다 ! :)', font, blue, screen_width // 2 - (screen_width*0.15), screen_height // 2)
+                    draw_text('현재 최고 기록 : ' + str(hard_record), font, white, screen_width // 2 - (screen_width*0.2), screen_height // 2+ (screen_height*0.05))
                     #draw_text('an established record : nn, the current record : mm', font, white, (screen_width // 2), screen_height // 2)
                     final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, timer_text_color) # 타이머 위치 지정
-                    screen.blit(final_timer, (350,10)) # 타이머 위치 지정
+                    screen.blit(final_timer, (screen_width*0.35, screen_height*0.01)) # 타이머 위치 지정
                     
                 else:
-                    draw_text('최고 기록 갱신 실패', font, blue, screen_width // 2 -150, screen_height // 2)
-                    draw_text('현재 최고 기록 : ' + str(hard_record), font, white, screen_width // 2 -200, screen_height // 2+ (screen_height*0.05))
+                    draw_text('최고 기록 갱신 실패', font, blue, screen_width // 2 - (screen_width*0.15), screen_height // 2)
+                    draw_text('현재 최고 기록 : ' + str(hard_record), font, white, screen_width // 2 - (screen_width*0.2), screen_height // 2+ (screen_height*0.05))
                     final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, timer_text_color) # 타이머 위치 지정
-                    screen.blit(final_timer, (350,10)) # 타이머 위치 지정
+                    screen.blit(final_timer, (screen_width*0.35, screen_height*0.01)) # 타이머 위치 지정
                     
                 if home_button.draw():
                     main_menu = True
