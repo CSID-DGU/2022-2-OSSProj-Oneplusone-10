@@ -16,7 +16,7 @@ main_menu = True
 
 # 이지모드 & 하드모드 레벨 설정  
 level = 1
-max_levels = 2
+max_levels = 5
 hard_level = 1
 hard_max_levels = 5
  
