@@ -40,6 +40,6 @@ timer_text_color = (255,255,255)    # 타이머 텍스트 색상 지정 -> 하�
 
 easy_record = 1000    # 이지모드 기록 달성을 위한 변수
 hard_record = 1000    # 하드모드 기록 달성을 위한 변수
-easy_timer = 300      # 이지모드 제한신간 타이머 초기값
-hard_timer = 300      # 하드모드 제한시간 타이머 초기값
+easy_timer = 100      # 이지모드 제한시간 타이머 초기값
+hard_timer = 200      # 하드모드 제한시간 타이머 초기값
 game_over_time = 0    # 게임 진행 중 타이머가 0이 되면 게임 종료
