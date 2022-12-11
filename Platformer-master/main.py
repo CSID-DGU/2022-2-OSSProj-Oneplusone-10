@@ -255,6 +255,7 @@ while run:
             start_ticks = pygame.time.get_ticks() #시작 시간 설정
             total_time = easy_timer #초안 그래도 10분, 600초로 설정(임시)
             flag = False
+            tag = False
         if hard_mode_button.draw(): 
             main_menu = "hard"
             start_ticks = pygame.time.get_ticks() #시작 시간 설정
@@ -340,9 +341,9 @@ while run:
             elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000 # 타이머 시간을 1000으로 나누어 초단위로 표시 (default: ms 단위)
             game_font = pygame.font.Font('Puradak Gentle Gothic OTF.otf', game_font_size)
 
-            timer = game_font.render(str(int(total_time - elapsed_time)), True, timer_text_color) # 색상 시정
+            timer = game_font.render(str(int(easy_timer - elapsed_time)), True, timer_text_color) # 색상 시정
             screen.blit(timer, timer_coordinate) # 타이머 위치 지정
-            if total_time - elapsed_time <= game_over_time: 
+            if easy_timer - elapsed_time <= game_over_time: 
                 restart_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 , restart_img)
                 if restart_button.draw():
                     main_menu = "main_screen"
@@ -382,6 +383,33 @@ while run:
                 world_data = []
                 world = reset_level(level)
                 game_over = 0
+                
+            elif score <= 5:
+                draw_text('과제물 획득 수가 부족합니다', font, blue, screen_width // 2 - (screen_width*0.3), screen_height // 2)
+                draw_text('기록 갱신 불가 !', font, white, screen_width // 2 - (screen_width*0.15), screen_height // 2+ (screen_height*0.05))
+                final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, timer_text_color) # 타이머 위치 지정
+                screen.blit(final_timer, (350,10)) # 타이머 위치 지정
+                
+                if home_button.draw():
+                    main_menu = True
+                    level = 1
+                    #reset level
+                    world_data = []
+                    world = reset_level(level)
+                    game_over = 0
+     
+                elif restart_button.draw():
+                    main_menu = 'easy'
+                    start_ticks = pygame.time.get_ticks() #시작 시간 설정
+                    total_time = easy_timer # easy_mode 타이머 100초
+                    level = 1
+                    #reset level
+                    world_data = []
+                    world = reset_level(level)
+                    game_over = 0
+                
+                
+                
             else:
                 if elapsed_time <= easy_record:
                     easy_record = elapsed_time
@@ -391,11 +419,13 @@ while run:
                     final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, timer_text_color) # 타이머 위치 지정
                     screen.blit(final_timer, (350,10)) # 타이머 위치 지정
                     
+                    
                 else:
                     draw_text('최고 기록 갱신 실패', font, blue, screen_width // 2 - (screen_width*0.15), screen_height // 2)
                     draw_text('현재 최고 기록 : ' + str(easy_record), font, white, screen_width // 2 - (screen_width*0.22), screen_height // 2+ (screen_height*0.05))
                     final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, timer_text_color) # 타이머 위치 지정
                     screen.blit(final_timer, (350,10)) # 타이머 위치 지정
+                    
                     
                 if home_button.draw():
                     main_menu = True
@@ -408,14 +438,14 @@ while run:
                 elif restart_button.draw():
                     main_menu = 'easy'
                     start_ticks = pygame.time.get_ticks() #시작 시간 설정
-                    total_time = 600 #초안 그래도 10분, 600초로 설정(임시)
+                    total_time = easy_timer 
                     level = 1
                     #reset level
                     world_data = []
                     world = reset_level(level)
                     game_over = 0
+        
                     
-     
     elif main_menu == 'hard' and not flag:
         flag = True
         world = reset_hard_level(level)
@@ -430,10 +460,10 @@ while run:
         if game_over == 0:
             elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000 # 타이머 시간을 1000으로 나누어 초단위로 표시 (default: ms 단위)
             game_font = pygame.font.Font('Puradak Gentle Gothic OTF.otf', game_font_size)
-            timer = game_font.render(str(int(total_time - elapsed_time)), True, timer_text_color) # 타이머 위치 지정
+            timer = game_font.render(str(int(hard_timer - elapsed_time)), True, timer_text_color) # 타이머 위치 지정
             screen.blit(timer, timer_coordinate) # 타이머 위치 지정
             
-            if total_time - elapsed_time <= game_over_time: 
+            if hard_timer - elapsed_time <= game_over_time: 
                 restart_button = Button(screen_width // 2 - (screen_width*0.16), screen_height // 2 , restart_img)
                 if restart_button.draw():
                     main_menu = "main_screen"
@@ -472,6 +502,31 @@ while run:
                 hard_world_data = []
                 world = reset_hard_level(hard_level)
                 game_over = 0
+                
+            elif score <= 45:
+                draw_text('과제물 획득 수가 부족합니다', font, blue, screen_width // 2 - (screen_width*0.3), screen_height // 2)
+                draw_text('기록 갱신 불가 !', font, white, screen_width // 2 - (screen_width*0.15), screen_height // 2+ (screen_height*0.05))
+                final_timer = game_font.render('게임 통과 소요 시간 : ' + str(elapsed_time), True, timer_text_color) # 타이머 위치 지정
+                screen.blit(final_timer, (350,10)) # 타이머 위치 지정
+                
+                if home_button.draw():
+                    main_menu = True
+                    level = 1
+                    #reset level
+                    world_data = []
+                    world = reset_level(level)
+                    game_over = 0
+     
+                elif restart_button.draw():
+                    main_menu = 'hard'
+                    start_ticks = pygame.time.get_ticks() #시작 시간 설정
+                    total_time = easy_timer # easy_mode 타이머 100초
+                    level = 1
+                    #reset level
+                    world_data = []
+                    world = reset_hard_level(level)
+                    game_over = 0
+                    
             else:
                 if elapsed_time <= hard_record:
                     hard_record = elapsed_time
@@ -498,11 +553,11 @@ while run:
                 elif restart_button.draw():
                     main_menu = 'hard'
                     start_ticks = pygame.time.get_ticks() #시작 시간 설정
-                    total_time = 600 #초안 그래도 10분, 600초로 설정(임시)
+                    total_time = hard_timer # hard_mode 시간 200초
                     hard_level = 1
                     #reset level
                     world_data = []
-                    world = reset_level(level)
+                    world = reset_hard_level(level)
                     game_over = 0
                 
 

@@ -59,3 +59,4 @@ selected_button = Button(screen_width// 2 - (screen_width*0.36), screen_height//
 select_button1 = Button(screen_width// 2 - (screen_width*0.15), screen_height// 2+(screen_height*0.1), select_img)
 select_button2 = Button(screen_width // 2 + (screen_width*0.08), screen_height// 2+(screen_height*0.1), select_img)
 select_button3 = Button(screen_width // 2 + (screen_width*0.28), screen_height// 2+(screen_height*0.1), select_img)
+
