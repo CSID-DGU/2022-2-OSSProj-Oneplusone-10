@@ -26,6 +26,7 @@ def draw_text(text, font, text_col, x, y):
 # 이미지 load하기
 # 게임에서 이미지 사용하기 위해 이미지 불러와서 변수에 저장
 # 여기저기서 사용해야하므로 전역변수에 저장
+background_full_img = pygame.image.load('img/background_full.png')
 background_img = pygame.image.load('img/background.png') #배경화면 이미지
 start_img = pygame.image.load('img/start_bt.png')#메인화면 버튼 이미지
 skin_img = pygame.image.load('img/skin_bt.png')

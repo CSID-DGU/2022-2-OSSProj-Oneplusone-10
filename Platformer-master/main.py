@@ -232,8 +232,10 @@ while run:
     # print(main_menu)
     clock.tick(fps)
 
+    event = pygame.event.wait()
+    screen.blit(background_full_img, (0, 0))
     screen.blit(background_img, (0, 0))
-
+        
     if main_menu == True:
         if exit_button.draw(): # exit 버튼 누르면 while 반복 루프에서 벗어남
             run = False     
