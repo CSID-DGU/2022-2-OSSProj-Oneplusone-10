@@ -68,17 +68,16 @@ python3 main.py
 
 ### 메인 화면(화면을 늘이면 게임 룰이 보입니다.)
 
-![스크린샷 2022-12-12 오전 12.39.42.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4d944027-9a33-4fd4-92a9-265e1af56af5/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_12.39.42.png)
+<img width="1068" alt="스크린샷 2022-12-13 오후 8 51 52" src="https://user-images.githubusercontent.com/101270528/207310679-9a805096-d57c-4add-a48b-481513d5fdea.png">
 
 **⓵ START**
 
 - START 버튼 눌렀을 때 나오는 페이지
 
-![스크린샷 2022-12-12 오전 12.43.21.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b7aff932-ccbc-4620-8569-7c5213307371/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_12.43.21.png)
+<img width="1069" alt="스크린샷 2022-12-12 오전 12 43 21" src="https://user-images.githubusercontent.com/101270528/207310365-a9b44779-5cd7-4c92-b7b6-648a2015d7eb.png">
+
 
 ### 1) EASY MODE
-
-![스크린샷 2022-12-12 오전 12.43.25.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b9c34bee-02c4-47c8-a917-dfe81f97bb10/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_12.43.25.png)
 
 EASY MODE 플레이 화면
 
@@ -92,7 +91,7 @@ HARD MODE 플레이 화면
 
 **⓶ SKIN**
 
-![스크린샷 2022-12-12 오전 12.43.16.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b0d46408-aced-42ce-9227-6fa449f2e478/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_12.43.16.png)
+<img width="1069" alt="스크린샷 2022-12-12 오전 12 43 16" src="https://user-images.githubusercontent.com/101270528/207310259-f5cc2d91-107e-4ea0-b9cf-67b84f1efc22.png">
 
 해당 페이지에서는 게임 내에서 플레이 할 아코를 선택할 수 있습니다. Default 값은 기본 아코로 설정되어 있습니다.
 
@@ -102,7 +101,7 @@ OPTION 메뉴에서는 게임 내 SOUND를 켜거나 끌 수 있으며, 게임 �
 
 - GAME RULE 페이지
 
-![제목을-입력해주세요_-001 (4).png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/60ec0b62-7a56-4013-98f1-d68d72011766/%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%E1%84%8B%E1%85%B3%E1%86%AF-%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%85%E1%85%A7%E1%86%A8%E1%84%92%E1%85%A2%E1%84%8C%E1%85%AE%E1%84%89%E1%85%A6%E1%84%8B%E1%85%AD_-001_(4).png)
+<img width="1069" alt="스크린샷 2022-12-12 오전 12 43 21" src="https://user-images.githubusercontent.com/101270528/207310365-a9b44779-5cd7-4c92-b7b6-648a2015d7eb.png">
 
 **⓸ EXIT**
 
@@ -113,7 +112,7 @@ EXIT 버튼 클릭 시, 게임이 종료됩니다.
 
 1) **SYSTEM UI ARCHITECTURE**
 
-![스크린샷 2022-12-13 오후 6.50.25.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3042f008-1b9f-4aae-94ec-6776046df152/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-13_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_6.50.25.png)
+<img width="466" alt="스크린샷 2022-12-13 오후 6 50 25" src="https://user-images.githubusercontent.com/101270528/207310117-915bceaa-fb37-4455-a000-aee275c97694.png">
 
 **2) FILE STRUCTURE**
 
