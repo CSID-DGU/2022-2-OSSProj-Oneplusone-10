@@ -124,17 +124,6 @@ EXIT 버튼 클릭 시, 게임이 종료됩니다.
 
 <img width="162" alt="스크린샷 2022-12-13 오후 8 24 18" src="https://user-images.githubusercontent.com/101270528/207308940-18a7bef8-deb9-412e-851b-52d9fd7e2737.png">
 
-| analysis_code | 코드 분석 파일 |
-| img | 게임에 필요한 모든 이미지 |
-| level_data | EASY MODE, HARD MODE 각 맵별 데이터 |
-| DungGeunMo.ttf, Puradak Gentle Gothic OTF.otf | 게임 실행에 필요한 폰트 |
-| game_button.py | 게임 내 버튼 구현 |
-| game_image_sound.py | 게임 내 sound on/off 구현 |
-| game_rule.py | 게임 룰 페이지 |
-| game_setting.py | 게임 세팅  |
-| level_editor.py | 게임 내 이미지 로드, 이지모드, 하드모드 맵 구축을 위한 기본 정의 |
-| main | 게임 실행 |
-
 ## 6️⃣ **SOURCE**
 
 
