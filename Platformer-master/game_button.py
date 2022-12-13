@@ -55,8 +55,8 @@ back_img_button = Button(screen_width // 2 - (screen_width*0.47), screen_height 
 restart_button = Button(screen_width // 2 - (screen_width*0.05), screen_height // 2 + (screen_height*0.1), restart_img) #게임 끝나고 보이는 버튼
 home_button = Button(screen_width // 2 - (screen_width*0.05), screen_height // 2 - (screen_height*0.1), home_img)
 playing_home_button = Button(screen_width // 2 + (screen_width*0.46) , screen_height // 2 - (screen_height*0.49), playing_home_img) #게임 도중 홈으로갈 수 있는 버튼
-selected_button = Button(screen_width// 2 - (screen_width*0.36), screen_height// 2+(screen_height*0.1), selected_img) #스킨 페이지 버튼
-select_button1 = Button(screen_width// 2 - (screen_width*0.15), screen_height// 2+(screen_height*0.1), select_img)
-select_button2 = Button(screen_width // 2 + (screen_width*0.08), screen_height// 2+(screen_height*0.1), select_img)
-select_button3 = Button(screen_width // 2 + (screen_width*0.28), screen_height// 2+(screen_height*0.1), select_img)
+select_button1 = Button(screen_width// 2 - (screen_width*0.36), screen_height// 2+(screen_height*0.1), select_img) #스킨 페이지 버튼
+select_button2 = Button(screen_width// 2 - (screen_width*0.15), screen_height// 2+(screen_height*0.1), select_img)
+select_button3 = Button(screen_width // 2 + (screen_width*0.08), screen_height// 2+(screen_height*0.1), select_img)
+select_button4 = Button(screen_width // 2 + (screen_width*0.28), screen_height// 2+(screen_height*0.1), select_img)
 
