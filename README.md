@@ -1,18 +1,14 @@
 # 2022-2-OSSProj-Oneplusone-10
 
+---
+
+## 0️⃣ INFORMATION
 ## One plus one Team 1️⃣➕1️⃣
 ![Generic badge](https://img.shields.io/badge/license-MIT-green.svg)
 ![Generic badge](https://img.shields.io/badge/OS-ubuntu-red.svg)
 ![Generic badge](https://img.shields.io/badge/IDE-VSCode-green.svg)
 ![Generic badge](https://img.shields.io/badge/python-3-blue.svg)
-![Generic badge](https://img.shields.io/badge/pygame-2.0.2-yellow.svg)
-
----
-
-## 0️⃣ INFORMATION
-
-
-(깃허브 리드미에 이미 올림)
+![Generic badge](https://img.shields.io/badge/pygame-2.1.2-yellow.svg)
 
 ## 1️⃣ TEAM INTRODUCTION
 
@@ -115,7 +111,6 @@ EXIT 버튼 클릭 시, 게임이 종료됩니다.
 
 ## 5️⃣ **STRUCTURE**
 
----
 
 1) **SYSTEM UI ARCHITECTURE**
 
