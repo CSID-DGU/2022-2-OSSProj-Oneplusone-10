@@ -48,7 +48,7 @@ def reset_hard_level(hard_level):
     lava_group.empty()
     exit_group.empty()
 
-    #load in level data and create world
+    #leve editor, world 로드하기
     if path.exists(f'level_data/hard_level{hard_level}_data'):  # 파일 또는 폴더 존재 여부 확인
         pickle_in = open(f'level_data/hard_level{hard_level}_data', 'rb')
         hard_world_data = pickle.load(pickle_in)
@@ -80,11 +80,11 @@ class Player():
             if key[pygame.K_SPACE] == False:
                 self.jumped = False
             if key[pygame.K_LEFT]:
-                dx -= 5
+                dx -= 7
                 self.counter += 1 
                 self.direction = -1
             if key[pygame.K_RIGHT]:
-                dx += 5
+                dx += 7
                 self.counter += 1
                 self.direction = 1
             if key[pygame.K_LEFT] == False and key[pygame.K_RIGHT] == False:
@@ -96,7 +96,7 @@ class Player():
                     self.image = self.images_left[self.index]
 
 
-            #handle animation
+            #아코 움직임
             if self.counter > walk_cooldown:
                 self.counter = 0	
                 self.index += 1
@@ -107,19 +107,19 @@ class Player():
                 if self.direction == -1:
                     self.image = self.images_left[self.index]
 
-            #add gravity
+            #점프할 때 내려오는 속도
             self.vel_y += 1
             if self.vel_y > 10:
                 self.vel_y = 10
             dy += self.vel_y
 
-            #check for collision
+            #플랫포머와 충돌시
             self.in_air = True
             for tile in world.tile_list:
-                #check for collision in x direction
+                #x좌표에서 플랫포머와 충돌할 시
                 if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
                     dx = 0
-                #check for collision in y direction
+                #y좌표에서 플랫포머와 충돌할 시
                 if tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
                     #check if below the ground i.e. jumping
                     if self.vel_y < 0:
