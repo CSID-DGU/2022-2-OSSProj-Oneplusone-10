@@ -68,8 +68,6 @@ https://youtu.be/sqyRi8oyK-A
 
 ## 4️⃣ HOW TO PLAY
 
----
-
 ### 메인 화면(화면을 늘이면 게임 룰이 보입니다.)
 
 <img width="700" alt="스크린샷 2022-12-13 오후 8 51 52" src="https://user-images.githubusercontent.com/101270528/207310679-9a805096-d57c-4add-a48b-481513d5fdea.png">
