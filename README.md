@@ -8,7 +8,7 @@
 ![Generic badge](https://img.shields.io/badge/IDE-VSCode-green.svg)
 ![Generic badge](https://img.shields.io/badge/python-3-blue.svg)
 ![Generic badge](https://img.shields.io/badge/pygame-2.0.2-yellow.svg)
-![Generic badge](https://img.shields.io/badge/pygame-menu-4.2.0-yellow.svg)
+![Generic badge](https://img.shields.io/badge/pygame_menu-4.2.0-yellow.svg)
 
 ## 1️⃣ TEAM INTRODUCTION
 
