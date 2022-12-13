@@ -1,6 +1,5 @@
 # 2022-2-OSSProj-Oneplusone-10
 
----
 
 ## 0️⃣ INFORMATION
 ## One plus one Team 1️⃣➕1️⃣
