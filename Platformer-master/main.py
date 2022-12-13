@@ -48,7 +48,7 @@ def reset_hard_level(hard_level):
     lava_group.empty()
     exit_group.empty()
 
-    #leve editor, world 로드하기
+    #load in level data and create world
     if path.exists(f'level_data/hard_level{hard_level}_data'):  # 파일 또는 폴더 존재 여부 확인
         pickle_in = open(f'level_data/hard_level{hard_level}_data', 'rb')
         hard_world_data = pickle.load(pickle_in)
@@ -80,11 +80,11 @@ class Player():
             if key[pygame.K_SPACE] == False:
                 self.jumped = False
             if key[pygame.K_LEFT]:
-                dx -= 7
+                dx -= 5
                 self.counter += 1 
                 self.direction = -1
             if key[pygame.K_RIGHT]:
-                dx += 7
+                dx += 5
                 self.counter += 1
                 self.direction = 1
             if key[pygame.K_LEFT] == False and key[pygame.K_RIGHT] == False:
@@ -96,7 +96,7 @@ class Player():
                     self.image = self.images_left[self.index]
 
 
-            #아코 움직임
+            #handle animation
             if self.counter > walk_cooldown:
                 self.counter = 0	
                 self.index += 1
@@ -107,19 +107,19 @@ class Player():
                 if self.direction == -1:
                     self.image = self.images_left[self.index]
 
-            #점프할 때 내려오는 속도
+            #add gravity
             self.vel_y += 1
             if self.vel_y > 10:
                 self.vel_y = 10
             dy += self.vel_y
 
-            #플랫포머와 충돌시
+            #check for collision
             self.in_air = True
             for tile in world.tile_list:
-                #x좌표에서 플랫포머와 충돌할 시
+                #check for collision in x direction
                 if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
                     dx = 0
-                #y좌표에서 플랫포머와 충돌할 시
+                #check for collision in y direction
                 if tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
                     #check if below the ground i.e. jumping
                     if self.vel_y < 0:
@@ -237,6 +237,7 @@ while run:
     screen.blit(background_img, (0, 0))
         
     if main_menu == True:
+        screen.blit(background_main_img, (0, 0))
         if exit_button.draw(): # exit 버튼 누르면 while 반복 루프에서 벗어남
             run = False     
         if start_button.draw(): # start 버튼 누르면 
@@ -264,7 +265,7 @@ while run:
             total_time = hard_timer #초안 그래도 10분, 600초로 설정(임시)
             flag = False
    
-    elif main_menu == "skin":  #3 start 버튼 눌렀을때 페이지 
+    elif main_menu == "skin":  #3 skin 버튼 눌렀을때 페이지 
         screen.blit(background_img, background_coordinate)
 
         if back_img_button.draw():  # 뒤로가기 버튼 기능 구현 -> 메인 메뉴 페이지로
@@ -334,12 +335,12 @@ while run:
 
     elif main_menu == "easy" and flag:
         world.draw()
+        
         if playing_home_button.draw():
             main_menu = True
             level = 1
    
         if game_over == 0:
-            
             elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000 # 타이머 시간을 1000으로 나누어 초단위로 표시 (default: ms 단위)
             game_font = pygame.font.Font('Puradak Gentle Gothic OTF.otf', game_font_size)
 
