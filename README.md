@@ -11,13 +11,11 @@
 
 ## 0️⃣ INFORMATION
 
----
 
 (깃허브 리드미에 이미 올림)
 
 ## 1️⃣ TEAM INTRODUCTION
 
----
 
 ### 팀명
 
@@ -27,7 +25,6 @@
 
 ## 2️⃣ PROJECT INTRODUCTION
 
----
 
 ### 1) 프로젝트 소개
 
@@ -40,7 +37,6 @@ EASY MODE, HARD MODE로 나누어 플레이가 가능합니다.
 
 ## 3️⃣ HOW TO RUN
 
----
 
 ### **SETTING TO PLAY GAME**
 
