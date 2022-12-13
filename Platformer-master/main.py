@@ -232,7 +232,7 @@ while run:
     # print(main_menu)
     clock.tick(fps)
 
-    event = pygame.event.wait()
+
     screen.blit(background_full_img, (0, 0))
     screen.blit(background_img, (0, 0))
         
