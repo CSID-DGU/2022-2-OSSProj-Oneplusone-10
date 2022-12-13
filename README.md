@@ -7,7 +7,8 @@
 ![Generic badge](https://img.shields.io/badge/OS-ubuntu-red.svg)
 ![Generic badge](https://img.shields.io/badge/IDE-VSCode-green.svg)
 ![Generic badge](https://img.shields.io/badge/python-3-blue.svg)
-![Generic badge](https://img.shields.io/badge/pygame-2.1.2-yellow.svg)
+![Generic badge](https://img.shields.io/badge/pygame-2.0.2-yellow.svg)
+![Generic badge](https://img.shields.io/badge/pygame_menu-4.2.0-yellow.svg)
 
 ## 1️⃣ TEAM INTRODUCTION
 
@@ -18,12 +19,16 @@
 
 ### **팀원 구성**
 
+| 신승원(팀장) | 산업시스템공학과 | 2018112481 |
+| --- | --- | --- |
+| 김규태(팀원) | 산업시스템공학과 | 2018112447 |
+| 곽호은(팀원) | 경영정보학과 | 2020111571 |
+| 민예지(팀원) | 경영정보학과 | 2020111571 |
+
 ## 2️⃣ PROJECT INTRODUCTION
 
 
 ### 1) 프로젝트 소개
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/562b0802-b29c-4948-b4b6-b90f97c8e236/Untitled.png)
 
 안녕하세요 ☺️ 원플러스원 팀입니다!   
 위의 게임은 pygame을 기반으로 하여 즐기는 platformer 게임입니다.  
@@ -37,9 +42,9 @@ EASY MODE, HARD MODE로 나누어 플레이가 가능합니다.
 
 ```python
 sudo apt-get update
-python3 -V  # 버전 확인 후 미설치 시 python 설치
-sudo apt-get install -y python3-pip  # pip3 설치
-pip3 install pygame==2.1.2 #pygame 설치
+sudo apt install python3-pip
+sudo pip3 install pygame==2.0.2
+sudo pip3 install pygame_menu==4.2.0
 ```
 
 ### **TO INSTALL THIS GAME**
@@ -58,13 +63,10 @@ python3 main.py
 
 ### 게임 시연 영상
 
-구글 드라이브 링크
-
 유튜브 링크
+https://youtu.be/sqyRi8oyK-A
 
-## 4️⃣ HOW TO PLAY⓸
-
----
+## 4️⃣ HOW TO PLAY
 
 ### 메인 화면(화면을 늘이면 게임 룰이 보입니다.)
 
@@ -81,11 +83,15 @@ python3 main.py
 
 EASY MODE 플레이 화면
 
+![KakaoTalk_Photo_2022-12-13-23-45-33](https://user-images.githubusercontent.com/101270528/207365345-fb02fd8f-fb22-4125-86e5-0ae5050ed966.png)
+
 제한시간 100초 / 과제물 20개를 획득해야 클리어 가능 
 
 ### 2) HARD MODE
 
 HARD MODE 플레이 화면
+
+![KakaoTalk_Photo_2022-12-13-23-45-39](https://user-images.githubusercontent.com/101270528/207365367-77b28e9c-1a44-48de-9452-bf8791f0162f.png)
 
 제한시간 200초 / 과제물 40개를 획득해야 클리어 가능
 
