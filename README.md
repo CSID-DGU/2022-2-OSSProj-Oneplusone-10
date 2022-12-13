@@ -117,7 +117,7 @@ EXIT 버튼 클릭 시, 게임이 종료됩니다.
 
 **2) FILE STRUCTURE**
 
-[https://user-images.githubusercontent.com/101270528/207308940-18a7bef8-deb9-412e-851b-52d9fd7e2737.png](https://user-images.githubusercontent.com/101270528/207308940-18a7bef8-deb9-412e-851b-52d9fd7e2737.png)
+<img width="162" alt="스크린샷 2022-12-13 오후 8 24 18" src="https://user-images.githubusercontent.com/101270528/207308940-18a7bef8-deb9-412e-851b-52d9fd7e2737.png">
 
 ## 6️⃣ **SOURCE**
 
