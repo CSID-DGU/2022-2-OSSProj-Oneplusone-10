@@ -45,7 +45,7 @@ pip3 install pygame==2.1.2 #pygame 설치
 ### **TO INSTALL THIS GAME**
 
 ```python
-git clone https://github.com/CSID-DGU/2022-2-OSSProj-Oneplusone-10
+git clone https://github.com/CSID-DGU/2022-2-OSSProj-Oneplusone-10.git
 cd 2022-2-OSSProj-Oneplusone-10
 cd Platformer-master
 ```
